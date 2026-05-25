@@ -11,7 +11,7 @@
 [![Dart](https://img.shields.io/badge/Dart-3.7.0-green.svg)](https://dart.dev/)
 [![SQLite](https://img.shields.io/badge/SQLite-2.4.2-orange.svg)](https://www.sqlite.org/)
 [![Tests](https://img.shields.io/badge/Tests-144_passed-brightgreen.svg)]()
-[![Version](https://img.shields.io/badge/Version-1.0.4-purple.svg)](https://github.com/yourusername/infovault)
+[![Version](https://img.shields.io/badge/Version-1.0.5-purple.svg)](https://github.com/peq775287952-gary/001.Information-Safe)
 
 </div>
 
@@ -355,10 +355,10 @@ infovault/
 
 ## 📞 联系方式
 
-- **作者**: Your Name
-- **邮箱**: your.email@example.com
-- **GitHub**: [yourusername](https://github.com/yourusername)
-- **项目地址**: [https://github.com/yourusername/infovault](https://github.com/yourusername/infovault)
+- **作者**: Gary seven
+- **邮箱**: peq775287952@163.com
+- **GitHub**: [peq775287952-gary](https://github.com/peq775287952-gary)
+- **项目地址**: [https://github.com/peq775287952-gary/001.Information-Safe](https://github.com/peq775287952-gary/001.Information-Safe)
 
 ---
 
