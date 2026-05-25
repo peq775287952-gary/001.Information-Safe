@@ -1,0 +1,66 @@
+<h2>"我密码" 技术方案对比</h2>
+<p class="subtitle">同一个软件，三种实现路径。你是个人用户，Android + Windows 双端。</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>跨平台框架（推荐）</h3>
+      <p>用一套代码同时搞定 Android 和 Windows。Flutter 或 React Native，写一次，两平台都能跑。</p>
+
+      <div class="pros-cons">
+        <div class="pros"><h4>优点</h4><ul>
+          <li>开发效率高，不需要分两个团队</li>
+          <li>界面统一，体验一致</li>
+          <li>维护成本低，改一处两平台生效</li>
+          <li>Flutter 支持桌面端越来越成熟</li>
+        </ul></div>
+        <div class="cons"><h4>缺点</h4><ul>
+          <li>性能略逊于原生（密码管理类 App 完全够用）</li>
+          <li>部分平台特性兼容需要额外处理</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>原生双端开发</h3>
+      <p>Android 用 Kotlin，Windows 用 C#/.NET，各自原生开发。</p>
+
+      <div class="pros-cons">
+        <div class="pros"><h4>优点</h4><ul>
+          <li>每端体验最佳、流畅度最好</li>
+          <li>可以充分利用系统功能（指纹、人脸等）</li>
+        </ul></div>
+        <div class="cons"><h4>缺点</h4><ul>
+          <li>两套代码，两套技术，开发量翻倍</li>
+          <li>未来维护和改功能成本高</li>
+          <li>两套界面体验需要各自打磨</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>纯 Web 方案</h3>
+      <p>做成一个 PWA（渐进式 Web 应用），浏览器打开就能用，Android 可以装到桌面上。</p>
+
+      <div class="pros-cons">
+        <div class="pros"><h4>优点</h4><ul>
+          <li>最简单，只要有浏览器就能跑</li>
+          <li>开发速度最快</li>
+        </ul></div>
+        <div class="cons"><h4>缺点</h4><ul>
+          <li>指纹/人脸识别支持差</li>
+          <li>离线使用不稳定</li>
+          <li>Windows 体验不够"像软件"</li>
+          <li>安全性和本地加密能力不如原生方案</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+</div>

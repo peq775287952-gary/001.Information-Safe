@@ -1,0 +1,89 @@
+<h2>主界面（终版）— 信息保险箱</h2>
+<p class="subtitle">顶部搜索 + 类型筛选 + 文件夹筛选，三个标签：信息保险箱 / 搜索 / 我的。</p>
+
+<div class="mockup">
+  <div class="mockup-header">信息保险箱 — 主界面</div>
+  <div class="mockup-body">
+
+    <!-- Search bar -->
+    <div style="padding: 4px 0 8px;">
+      <div style="display: flex; align-items: center; background: #f0f0f0; border-radius: 10px; padding: 8px 12px;">
+        <span style="font-size: 16px; margin-right: 8px;">🔍</span>
+        <input class="mock-input" placeholder="搜索平台名、用户名、卡号、证件号..." style="background: transparent; border: none; flex: 1; padding: 2px 0;">
+      </div>
+    </div>
+
+    <!-- Type filter tabs -->
+    <div style="display: flex; gap: 6px; padding: 4px 0; overflow-x: auto;">
+      <span style="background: #4A90D9; color: #fff; padding: 5px 12px; border-radius: 20px; font-size: 12px; white-space: nowrap;">全部 18</span>
+      <span style="background: #f0f0f0; padding: 5px 12px; border-radius: 20px; font-size: 12px; white-space: nowrap;">🔑 密码 12</span>
+      <span style="background: #f0f0f0; padding: 5px 12px; border-radius: 20px; font-size: 12px; white-space: nowrap;">💳 银行卡 3</span>
+      <span style="background: #f0f0f0; padding: 5px 12px; border-radius: 20px; font-size: 12px; white-space: nowrap;">🪪 证件 2</span>
+      <span style="background: #f0f0f0; padding: 5px 12px; border-radius: 20px; font-size: 12px; white-space: nowrap;">📝 笔记 1</span>
+    </div>
+
+    <!-- Folder tabs -->
+    <div style="display: flex; gap: 6px; padding: 6px 0; overflow-x: auto; border-bottom: 1px solid #eee; margin-bottom: 8px;">
+      <span style="background: #E3F2FD; color: #1565C0; padding: 3px 10px; border-radius: 16px; font-size: 11px; white-space: nowrap;">📁 全部</span>
+      <span style="background: #f5f5f5; padding: 3px 10px; border-radius: 16px; font-size: 11px; white-space: nowrap;">社交</span>
+      <span style="background: #f5f5f5; padding: 3px 10px; border-radius: 16px; font-size: 11px; white-space: nowrap;">金融</span>
+      <span style="background: #f5f5f5; padding: 3px 10px; border-radius: 16px; font-size: 11px; white-space: nowrap;">开发</span>
+      <span style="background: #f5f5f5; padding: 3px 10px; border-radius: 16px; font-size: 11px; white-space: nowrap;">证件</span>
+      <span style="font-size: 11px; padding: 3px 4px; color: #999;">+ 新建</span>
+    </div>
+
+    <!-- Item list -->
+    <div style="background: #fff; border-radius: 8px; padding: 8px 10px; margin-bottom: 6px; border-left: 3px solid #4A90D9; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 20px;">🔑</span>
+      <div style="flex: 1;"><strong>微信</strong><span style="font-size: 10px; background: #E3F2FD; color: #1565C0; padding: 1px 6px; border-radius: 4px; margin-left: 6px;">社交</span></div>
+      <span style="font-size: 11px; color: #999;">user_wechat</span>
+    </div>
+
+    <div style="background: #fff; border-radius: 8px; padding: 8px 10px; margin-bottom: 6px; border-left: 3px solid #FF9800; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 20px;">💳</span>
+      <div style="flex: 1;"><strong>招商银行储蓄卡</strong><span style="font-size: 10px; background: #FFF3E0; color: #E65100; padding: 1px 6px; border-radius: 4px; margin-left: 6px;">金融</span></div>
+      <span style="font-size: 11px; color: #999;">6217 ****</span>
+    </div>
+
+    <div style="background: #fff; border-radius: 8px; padding: 8px 10px; margin-bottom: 6px; border-left: 3px solid #4CAF50; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 20px;">🪪</span>
+      <div style="flex: 1;"><strong>身份证</strong><span style="font-size: 10px; background: #E8F5E9; color: #2E7D32; padding: 1px 6px; border-radius: 4px; margin-left: 6px;">证件</span></div>
+      <span style="font-size: 11px; color: #999;">310***1234</span>
+    </div>
+
+    <div style="background: #fff; border-radius: 8px; padding: 8px 10px; margin-bottom: 6px; border-left: 3px solid #9C27B0; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 20px;">🔑</span>
+      <div style="flex: 1;"><strong>支付宝</strong><span style="font-size: 10px; background: #FFF3E0; color: #E65100; padding: 1px 6px; border-radius: 4px; margin-left: 6px;">金融</span><span style="font-size: 10px; background: #FFEBEE; color: #C62828; padding: 1px 4px; border-radius: 4px; margin-left: 2px;">🔒加强</span></div>
+      <span style="font-size: 11px; color: #999;">138****8888</span>
+    </div>
+
+    <div style="background: #fff; border-radius: 8px; padding: 8px 10px; margin-bottom: 6px; border-left: 3px solid #607D8B; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 20px;">📝</span>
+      <div style="flex: 1;"><strong>家里门锁密码</strong></div>
+      <span style="font-size: 11px; color: #999;">笔记</span>
+    </div>
+
+    <div style="text-align: center; padding: 16px;">
+      <button class="mock-button" style="background: #4A90D9; color: #fff; padding: 10px 32px;">+ 添加新项目</button>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 16px;">
+  <div class="section">
+    <h3>底部三个标签：</h3>
+    <table style="width: 100%; border-collapse: collapse;">
+      <tr><td style="padding: 6px;"><strong>🏦 信息保险箱</strong></td><td style="padding: 6px;">主列表，搜索+筛选+浏览</td></tr>
+      <tr><td style="padding: 6px;"><strong>🔍 搜索</strong></td><td style="padding: 6px;">全屏搜索页，大搜索框，结果按类型分组显示</td></tr>
+      <tr><td style="padding: 6px;"><strong>👤 我的</strong></td><td style="padding: 6px;">设置、安全、文件夹管理、导入导出、关于</td></tr>
+    </table>
+  </div>
+  <div class="section">
+    <h3>搜索功能：</h3>
+    <ul>
+      <li>主界面顶部常驻搜索栏，输关键词实时筛选下方列表</li>
+      <li>底部"搜索"标签提供全屏搜索，输入后按类型分组展示结果</li>
+      <li>可搜索：平台名、用户名、邮箱、手机号、卡号、证件号、备注内容</li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<h2>解锁 & 安全流程</h2>
+<p class="subtitle">每次打开 App 和查看敏感密码时的安全验证。</p>
+
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">打开 App → 解锁</div>
+    <div class="mockup-body" style="text-align: center; padding: 24px 16px;">
+      <span style="font-size: 48px;">🔐</span>
+      <h3 style="margin: 12px 0 4px;">我密码</h3>
+      <p style="color: #888; font-size: 13px; margin-bottom: 20px;">请输入主密码解锁</p>
+      <input class="mock-input" placeholder="输入主密码" style="width: 80%; margin-bottom: 12px;" type="password">
+      <br/>
+      <button class="mock-button" style="width: 80%; padding: 10px; background: #4A90D9; color: #fff;">解锁</button>
+      <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #eee;">
+        <p style="font-size: 12px; color: #888;">或使用生物识别快速解锁</p>
+        <button class="mock-button" style="margin-top: 8px;">👆 指纹解锁</button>
+      </div>
+      <p style="font-size: 11px; color: #C62828; margin-top: 12px;">
+        ⚠️ 忘记主密码 = 数据永久无法恢复
+      </p>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">加强安全：查看/复制需验证</div>
+    <div class="mockup-body" style="padding: 16px;">
+      <div style="text-align: center; padding: 12px 0;">
+        <span style="font-size: 36px;">🔒</span>
+        <h4 style="margin: 8px 0;">此密码为"加强安全"</h4>
+        <p style="font-size: 13px; color: #888;">查看或复制需要再次验证身份</p>
+      </div>
+      <div style="background: #FFF3E0; border-radius: 8px; padding: 12px; margin: 12px 0;">
+        <p style="font-size: 12px; margin: 0;">📋 当前操作：<strong>复制密码</strong></p>
+      </div>
+      <div style="text-align: center;">
+        <button class="mock-button" style="width: 100%; padding: 12px; margin-bottom: 8px;">👆 指纹验证</button>
+        <button class="mock-button" style="width: 100%; padding: 12px;">🔑 输入主密码</button>
+        <button class="mock-button" style="width: 100%; padding: 12px; background: #f5f5f5; color: #888;">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 16px;">
+  <div class="section">
+    <h3>解锁规则：</h3>
+    <ol>
+      <li><strong>打开 App</strong> → 必须输入主密码 或 指纹/人脸解锁</li>
+      <li><strong>基础安全密码</strong> → 解锁后自由查看、复制</li>
+      <li><strong>加强安全密码</strong> → 每次查看密码或复制时，弹出二次验证（指纹或再输一次主密码）</li>
+      <li><strong>剪贴板</strong> → 复制密码后 60 秒自动清空，防止被其他 App 偷窥</li>
+      <li><strong>App 切到后台</strong> → 超过一定时间（可设置）后自动锁定</li>
+    </ol>
+  </div>
+</div>

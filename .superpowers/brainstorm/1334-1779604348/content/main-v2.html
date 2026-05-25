@@ -1,0 +1,90 @@
+<h2>主界面（修订版）— 个人信息保险箱</h2>
+<p class="subtitle">四种类型一目了然，顶部可切换分类，也可按文件夹筛选。</p>
+
+<div class="mockup">
+  <div class="mockup-header">密码箱 — 主列表</div>
+  <div class="mockup-body">
+    <!-- Type filter tabs -->
+    <div style="display: flex; gap: 6px; padding: 8px 0; overflow-x: auto;">
+      <span style="background: #4A90D9; color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 12px; white-space: nowrap;">全部 18条</span>
+      <span style="background: #f0f0f0; padding: 6px 14px; border-radius: 20px; font-size: 12px; white-space: nowrap;">🔑 密码 12</span>
+      <span style="background: #f0f0f0; padding: 6px 14px; border-radius: 20px; font-size: 12px; white-space: nowrap;">💳 银行卡 3</span>
+      <span style="background: #f0f0f0; padding: 6px 14px; border-radius: 20px; font-size: 12px; white-space: nowrap;">🪪 证件 2</span>
+      <span style="background: #f0f0f0; padding: 6px 14px; border-radius: 20px; font-size: 12px; white-space: nowrap;">📝 笔记 1</span>
+    </div>
+
+    <!-- Folder tabs -->
+    <div style="display: flex; gap: 6px; padding: 4px 0 8px; overflow-x: auto; border-bottom: 1px solid #eee; margin-bottom: 8px;">
+      <span style="background: #E3F2FD; color: #1565C0; padding: 4px 12px; border-radius: 16px; font-size: 11px; white-space: nowrap;">📁 全部</span>
+      <span style="background: #f5f5f5; padding: 4px 12px; border-radius: 16px; font-size: 11px; white-space: nowrap;">社交</span>
+      <span style="background: #f5f5f5; padding: 4px 12px; border-radius: 16px; font-size: 11px; white-space: nowrap;">金融</span>
+      <span style="background: #f5f5f5; padding: 4px 12px; border-radius: 16px; font-size: 11px; white-space: nowrap;">开发</span>
+      <span style="background: #f5f5f5; padding: 4px 12px; border-radius: 16px; font-size: 11px; white-space: nowrap;">证件</span>
+      <span style="font-size: 11px; padding: 4px 4px; color: #999;">+</span>
+    </div>
+
+    <!-- Item list -->
+    <div style="background: #fff; border-radius: 8px; padding: 6px 10px; margin-bottom: 6px; border-left: 3px solid #4A90D9; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 22px;">🔑</span>
+      <div style="flex: 1;">
+        <strong>微信</strong>
+        <span style="font-size: 10px; background: #E3F2FD; color: #1565C0; padding: 1px 6px; border-radius: 4px; margin-left: 6px;">社交</span>
+      </div>
+      <span style="font-size: 11px; color: #999;">user_wechat</span>
+    </div>
+
+    <div style="background: #fff; border-radius: 8px; padding: 6px 10px; margin-bottom: 6px; border-left: 3px solid #FF9800; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 22px;">💳</span>
+      <div style="flex: 1;">
+        <strong>招商银行储蓄卡</strong>
+        <span style="font-size: 10px; background: #FFF3E0; color: #E65100; padding: 1px 6px; border-radius: 4px; margin-left: 6px;">金融</span>
+      </div>
+      <span style="font-size: 11px; color: #999;">6217 ****</span>
+    </div>
+
+    <div style="background: #fff; border-radius: 8px; padding: 6px 10px; margin-bottom: 6px; border-left: 3px solid #4CAF50; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 22px;">🪪</span>
+      <div style="flex: 1;">
+        <strong>身份证</strong>
+        <span style="font-size: 10px; background: #E8F5E9; color: #2E7D32; padding: 1px 6px; border-radius: 4px; margin-left: 6px;">证件</span>
+      </div>
+      <span style="font-size: 11px; color: #999;">310***1234</span>
+    </div>
+
+    <div style="background: #fff; border-radius: 8px; padding: 6px 10px; margin-bottom: 6px; border-left: 3px solid #9C27B0; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 22px;">🔑</span>
+      <div style="flex: 1;">
+        <strong>支付宝</strong>
+        <span style="font-size: 10px; background: #FFF3E0; color: #E65100; padding: 1px 6px; border-radius: 4px; margin-left: 6px;">金融</span>
+        <span style="font-size: 10px; background: #FFF3E0; color: #E65100; padding: 1px 4px; border-radius: 4px; margin-left: 2px;">🔒加强</span>
+      </div>
+      <span style="font-size: 11px; color: #999;">138****8888</span>
+    </div>
+
+    <div style="background: #fff; border-radius: 8px; padding: 6px 10px; margin-bottom: 6px; border-left: 3px solid #607D8B; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 22px;">📝</span>
+      <div style="flex: 1;">
+        <strong>家里门锁密码</strong>
+      </div>
+      <span style="font-size: 11px; color: #999;">笔记</span>
+    </div>
+
+    <!-- Add button -->
+    <div style="text-align: center; padding: 16px;">
+      <button class="mock-button" style="background: #4A90D9; color: #fff; padding: 10px 32px;">+ 添加新项目</button>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 16px;">
+  <div class="section">
+    <h3>主界面说明：</h3>
+    <ul>
+      <li><strong>第一排</strong>：类型筛选（全部 / 密码 / 银行卡 / 证件 / 笔记），点一下只看该类型</li>
+      <li><strong>第二排</strong>：文件夹筛选（全部 / 社交 / 金融 / 证件等），可自定义新建文件夹</li>
+      <li><strong>每条前面</strong>：图标区分类型（🔑密码 💳银行卡 🪪证件 📝笔记）</li>
+      <li><strong>加强安全的条目</strong>：后面显示🔒加强标识</li>
+      <li><strong>底部</strong>：点击"+"先选类型，再填对应表单</li>
+    </ul>
+  </div>
+</div>
