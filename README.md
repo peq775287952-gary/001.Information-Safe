@@ -8,10 +8,10 @@
 **个人信息安全保险箱** | Android + Windows 双端支持
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.38.6-blue.svg)](https://flutter.dev/)
-[![Dart](https://img.shields.io/badge/Dart-3.7.0-green.svg)](https://dart.dev/)
-[![SQLite](https://img.shields.io/badge/SQLite-2.4.2-orange.svg)](https://www.sqlite.org/)
-[![Tests](https://img.shields.io/badge/Tests-144_passed-brightgreen.svg)]()
-[![Version](https://img.shields.io/badge/Version-1.0.5-purple.svg)](https://github.com/peq775287952-gary/001.Information-Safe)
+[![Dart](https://img.shields.io/badge/Dart-3.10.7-green.svg)](https://dart.dev/)
+[![SQLite](https://img.shields.io/badge/SQLite-latest-orange.svg)](https://www.sqlite.org/)
+[![Tests](https://img.shields.io/badge/Tests-138_passed-brightgreen.svg)]()
+[![Version](https://img.shields.io/badge/Version-1.1.2-purple.svg)](https://github.com/peq775287952-gary/001.Information-Safe)
 
 </div>
 
@@ -26,11 +26,12 @@ Information Safe 是一个现代化的个人信息保险箱应用，专为安全
 - 🔐 **军用级加密**: AES-256-GCM + PBKDF2 密钥派生
 - 🚀 **双端支持**: Flutter 一套代码，Android + Windows 双端运行
 - 🎨 **现代UI**: Material Design 3 + 自定义设计系统
-- 📱 **生物识别**: 指纹/人脸识别快速解锁
+- 🏦 **品牌图标**: 16 家 AI 供应商 + 8 家银行真实 Logo 自动识别
 - 🗂️ **智能分类**: 自动识别平台分类，支持自定义文件夹
 - 🔍 **快速搜索**: 实时搜索，多字段匹配
 - 📸 **附件管理**: 支持照片加密存储
-- ⚡ **自动锁定**: 后台超时自动锁定，防止数据泄露
+- ⚡ **自动锁定**: 可开关的后台超时自动锁定，防止数据泄露
+- 🤖 **API Key 管理**: 专门的大模型 API Key 存储类型
 
 ---
 
@@ -40,11 +41,11 @@ Information Safe 是一个现代化的个人信息保险箱应用，专为安全
 
 ```yaml
 前端框架: Flutter 3.38.6
-编程语言: Dart 3.7.0
+编程语言: Dart 3.10.7
 状态管理: Provider
 本地存储: SQLite + Flutter Secure Storage
 加密引擎: encrypt + crypto
-生物识别: local_auth
+SVG 渲染: flutter_svg
 图片处理: image_picker
 国际化: flutter_localizations
 ```
@@ -55,8 +56,8 @@ Information Safe 是一个现代化的个人信息保险箱应用，专为安全
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   AuthService   │    │  EncryptionService│    │ DatabaseService  │
 │   - 主密码管理   │    │  - AES-256-GCM  │    │  - SQLite 数据库 │
-│   - 生物识别     │    │  - PBKDF2 密钥   │    │  - 数据加密存储  │
-│   - 锁定状态     │    │  - 安全存储     │    │  - 索引优化     │
+│   - 锁定状态     │    │  - PBKDF2 密钥   │    │  - 数据加密存储  │
+│   - 失败锁定     │    │  - 安全存储     │    │  - 索引优化     │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
          │                       │                       │
          └───────────────────────┼───────────────────────┘
@@ -127,22 +128,19 @@ Information Safe 是一个现代化的个人信息保险箱应用，专为安全
    - 建议使用强密码（12位以上，包含大小写字母、数字、特殊字符）
    - 主密码忘记后无法恢复，请务必牢记
 
-2. **设置生物识别**
-   - 支持指纹/人脸识别快速解锁
-   - 可在设置中启用/禁用
-
 ### 主要功能
 
 #### 📋 信息管理
 
-支持四种信息类型：
+支持五种信息类型：
 
-| 类型 | 字段 | 照片支持 | 安全等级 |
-|------|------|----------|----------|
-| 🔑 **登录密码** | 平台名、用户名、密码、邮箱、手机号、网址、备注 | ❌ | 基础/加强 |
-| 💳 **银行卡** | 银行名称、卡号、持卡人、有效期、CVV、取款密码、备注 | ✅ (最多3张) | 基础/加强 |
-| 🪪 **证件** | 证件类型、证件号、姓名、签发机关、有效期、备注 | ✅ (最多3张) | 基础/加强 |
-| 📝 **安全笔记** | 标题、自由文本 | ❌ | 基础/加强 |
+| 类型 | 字段 | 照片支持 |
+|------|------|----------|
+| 🔑 **登录密码** | 平台名、用户名、密码、邮箱、手机号、网址、备注 | ❌ |
+| 💳 **银行卡** | 银行名称、卡号、持卡人、有效期、CVV、取款密码、备注 | ✅ (最多3张) |
+| 🪪 **证件** | 证件类型、证件号、姓名、签发机关、有效期、备注 | ✅ (最多3张) |
+| 📝 **安全笔记** | 标题、自由文本 | ❌ |
+| 🤖 **API Key** | 供应商、API Key、接口地址、模型名称、备注 | ❌ |
 
 #### 🔍 搜索功能
 
@@ -158,10 +156,7 @@ Information Safe 是一个现代化的个人信息保险箱应用，专为安全
 
 #### 🔒 安全设置
 
-- **安全等级**: 
-  - 基础: 解锁App后可直接查看/复制
-  - 加强: 每次查看密码或复制时需二次验证
-- **自动锁定**: 后台超时自动锁定（可设置时间）
+- **自动锁定**: 用户可自行开关，后台超时自动锁定（默认 3 分钟，可自定义）
 - **失败锁定**: 连续错误多次后临时锁定
 - **剪贴板保护**: 复制后60秒自动清空
 
@@ -189,7 +184,6 @@ AES-256-GCM 加密数据
 2. **随机盐值**: 每个用户使用唯一的随机盐值
 3. **AES-256-GCM**: 业界最安全的加密算法之一
 4. **内存安全**: 加密密钥仅在内存中存在，不落盘存储
-5. **生物识别**: 使用设备原生生物识别功能
 
 ### 数据保护
 
@@ -223,9 +217,10 @@ AES-256-GCM 加密数据
 ### 特色设计
 
 - **自适应主题**: 自动跟随系统浅色/深色模式
+- **边缘到边缘**: Android 全面屏导航栏自适应，小白条跟随 App 主题
+- **品牌图标**: 37 个 SVG 品牌图标，AI + 银行 + 证件全覆盖，支持动态着色
 - **响应式布局**: 适配不同屏幕尺寸
 - **流畅动画**: 页面转场和交互动画
-- **图标映射**: 45+ 平台品牌图标自动识别
 
 ---
 
@@ -233,8 +228,8 @@ AES-256-GCM 加密数据
 
 ### 测试
 
-项目包含 **144 个测试** (0 failures)，分三层：
-- 单元测试 (130) + Widget 测试 (13) + 集成测试 (1，含 9 张自动截图)
+项目包含 **138 个测试** (0 failures)，分三层：
+- 单元测试 + Widget 测试 + Golden 截图测试
 
 详见 [TESTING.md](infovault/TESTING.md) 获取完整测试文档和快速命令。
 
@@ -243,37 +238,25 @@ AES-256-GCM 加密数据
 ```
 infovault/
 ├── lib/
-│   ├── models/          # 数据模型
-│   │   ├── vault_item.dart
-│   │   ├── item_type.dart
-│   │   ├── folder.dart
-│   │   └── security_level.dart
-│   ├── screens/         # 页面组件
-│   │   ├── vault_screen.dart
-│   │   ├── search_screen.dart
-│   │   ├── settings_screen.dart
-│   │   ├── add_edit_item_screen.dart
-│   │   └── ...
-│   ├── services/        # 核心服务
-│   │   ├── auth_service.dart
-│   │   ├── encryption_service.dart
-│   │   ├── database_service.dart
-│   │   ├── vault_service.dart
-│   │   └── ...
-│   ├── widgets/         # 可复用组件
-│   ├── theme/           # 主题配置
-│   ├── utils/           # 工具函数
+│   ├── models/          # 数据模型 (vault_item, item_type, folder)
+│   ├── screens/         # 页面 (vault, search, settings, lock, create_password, add_edit_item)
+│   ├── services/        # 核心服务 (auth, encryption, database, vault, photo, export_import)
+│   ├── widgets/         # 可复用组件 (platform_icon, quick_fill_chips, type_filter_bar 等)
+│   ├── theme/           # 主题配置 (app_theme)
+│   ├── utils/           # 工具 (brand_icons, constants, validators)
 │   └── app.dart         # 应用入口
-├── test/               # 测试文件
-├── android/            # Android 原生配置
-├── windows/            # Windows 原生配置
-└── pubspec.yaml        # 项目配置
+├── scripts/             # 构建脚本 (bump_version, download_brand_icons)
+├── assets/icons/        # SVG 品牌图标 (37 个)
+├── test/                # 测试 (138 个)
+├── android/             # Android 原生配置
+├── pubspec.yaml
+└── CHANGELOG.md
 ```
 
 ### 核心服务说明
 
 #### AuthService (认证服务)
-- 管理主密码和生物识别
+- 管理主密码验证
 - 处理解锁状态和锁定逻辑
 - 控制访问权限
 
@@ -296,16 +279,16 @@ infovault/
 
 ## 📊 版本信息
 
-### 当前版本: v1.0.4
+### 当前版本: v1.1.2
 
 #### 版本历程
 
 | 版本 | 主要更新 |
 |------|----------|
-| v1.0.0 | 初始版本，基础功能完整 |
-| v1.0.1 | UI 重设计，一键填入功能 |
-| v1.0.2 | Bug 修复，深色模式优化 |
-| v1.0.3 | 入口验证，搜索优化，剪贴板服务 |
+| v1.1.2 | 导航栏全局适配、银行 SVG 图标修复、永久开发规则 |
+| v1.1.1 | AI API Key 类型、SVG 品牌图标系统、自动锁定开关、代码大清理 |
+| v1.1.0 | 版本号系统、一键构建脚本 |
+| v1.0.5 | UI 重设计，深色模式优化 |
 | v1.0.4 | 应用品牌化，图标映射，作者署名 |
 
 ### 开发路线

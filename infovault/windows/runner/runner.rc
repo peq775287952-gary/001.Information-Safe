@@ -1,0 +1,32 @@
+#include <windows.h>
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION 1,0,0,0
+PRODUCTVERSION 1,0,0,0
+FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
+FILEFLAGS 0
+FILEOS VOS__WINDOWS32
+FILETYPE VFT_APP
+FILESUBTYPE 0
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080904E4"
+        BEGIN
+            VALUE "CompanyName", "InfoVault"
+            VALUE "FileDescription", "信息保险箱"
+            VALUE "FileVersion", "1.0.0.0"
+            VALUE "InternalName", "infovault"
+            VALUE "LegalCopyright", ""
+            VALUE "OriginalFilename", "infovault.exe"
+            VALUE "ProductName", "信息保险箱"
+            VALUE "ProductVersion", "1.0.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x809, 1252
+    END
+END
+
+1 ICON DISCARDABLE "app_icon.ico"

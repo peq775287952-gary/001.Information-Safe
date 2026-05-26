@@ -1,0 +1,9 @@
+pub_cache/
+*.log
+.DS_Store
+.vscode/
+.idea/
+build/
+.dart_tool/
+*.jks
+*.keystore

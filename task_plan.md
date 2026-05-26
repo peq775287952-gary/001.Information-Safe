@@ -4,32 +4,31 @@
 开发"信息保险箱"——Flutter 跨平台个人信息保险箱，Android + Windows 双端。
 
 ## Current Phase
-Phase 1: Android 本地版（v1.0.4 — 功能完整 + 144 测试全通过）
+Phase 1: Android 本地版（v1.1.2 — 功能完整 + 138 测试全通过）
 
-## 当前版本：v1.0.4+5
+## 当前版本：v1.1.2+11
 
 ### 已完成
-- 28 Dart 源文件 + 测试全覆盖 (144 tests, 0 failures)
-- 四种保险箱类型（密码/银行卡/证件/笔记）
-- 主密码 + 指纹解锁 + 安全等级（基础/加强）
-- 智能分类（50+ 平台映射）+ 自定义文件夹
+- 28+ Dart 源文件 + 138 tests (0 failures)
+- 五种保险箱类型（密码/银行卡/证件/笔记/API Key）
+- 主密码 + 自动锁定开关（默认 3 分钟，可关闭）
+- 智能分类 + 自定义文件夹
 - 全字段搜索（结果按类型分组）
-- 品牌平台图标（45+ 平台专属图标）
-- 一键填入标签（20 平台 + 9 银行 + 7 证件）
-- 剪贴板 60s 自动清空（可开关）
-- 切后台自动锁定（时间可调 1-30 min）
-- 加强安全：入口验证（导航前弹窗）
-- 深色/浅色自适应（手工蓝灰色板）
-- UI 现代化：4px 网格、圆角分级、Material 图标、列表渐入动画
-- 中文本地化（系统菜单中文）
+- SVG 品牌图标（16 AI + 8 银行 + 5 证件）
+- 一键填入标签（品牌分组快捷填入）
+- 剪贴板 60s 自动清空
+- 切后台自动锁定（时间可调）
+- Android 边缘到边缘导航栏适配
+- 深色/浅色自适应（手工蓝色板）
+- UI 现代化：4px 网格、圆角分级、SVG 图标、列表渐入动画
+- 中文本地化
 - 自定义应用图标 + 应用名"信息保险箱"
-- 作者署名 N7
-- 三层测试架构：单元(130) + Widget/Golden(13) + 集成(1，含 9 自动截图)
+- 版本号系统：界面 X.Y.Z，构建自动递增
 
 ## Phases
 
 ### Phase 0: 需求设计 ✅
-### Phase 1: Android 本地版 ✅ (v1.0.4)
+### Phase 1: Android 本地版 ✅ (v1.1.2)
 ### Phase 2: Windows 本地版 ⏸
 - Windows 桌面适配 + Windows Hello
 ### Phase 3: 扫码同步 ⏸
@@ -65,12 +64,11 @@ export JAVA_HOME=D:/java
 # 模拟器启动
 flutter emulators --launch flutter_test
 
-# Debug APK 构建
-cd h:/MyPasswords/infovault
-flutter build apk --debug
+# 构建 Release APK (每次构建自动递增版本号)
+dart run scripts/bump_version.dart && flutter build apk --release --no-android-gradle-daemon
 
-# Release APK
-flutter build apk --release
+# 一键构建 (build.bat)
+cmd /c build.bat
 
 # 运行到模拟器
 flutter run -d emulator-5554

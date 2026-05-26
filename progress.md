@@ -1,5 +1,48 @@
 # Progress Log — 信息保险箱
 
+## Session: 2026-05-26 (v1.1.2 — 导航栏适配 + 图标修复)
+
+### 新增 & 修复
+- 锁屏/创建密码界面导航栏适配（`AppTheme.overlayStyle()` + `AnnotatedRegion`）
+- 银行 SVG 图标修复（删除 iconfont.cn 白色底色路径）
+- app_theme.dart 编译错误修复（缺失 `import 'package:flutter/services.dart'`）
+- 永久开发规则建立（自动记忆、规范检查、更新日志、断点续接）
+- 构建流程固化（每次构建走 bump → build，自动递增版本号）
+
+### 文档更新
+- README.md 全面刷新（版本、功能、技术栈、项目结构）
+- findings.md 更新（移除指纹/安全等级，补充新 Bug 修复）
+- task_plan.md、progress.md 版本同步
+- 新建 CHANGELOG.md、feedback_dev-rules.md、feedback_build-version-bump.md
+
+### 当前构建: v1.1.2+11, 51.6MB Release APK
+
+## Session: 2026-05-26 (v1.1.1 — 正式版) ✅
+
+### 新功能
+- AI API Key 类型 (ItemType.apiKey)
+- SVG 品牌图标系统（16 AI + 8 银行 + 5 证件）
+- 自动锁定开关（可关闭，默认 3 分钟）
+- 版本号系统（界面 X.Y.Z，构建自动递增）
+- Android 边缘到边缘导航栏（edge-to-edge + 透明导航栏）
+- build.bat 一键构建脚本
+
+### 代码清理
+- 完全移除指纹认证代码 (local_auth、BiometricResult)
+- 完全移除加强安全代码 (security_level.dart、SecondaryAuthDialog)
+- 移除 AndroidManifest USE_BIOMETRIC 权限
+- 清理 platform_icon.dart 25 条死 _brands 条目
+- 清理 database_service.dart security_level 死列
+- 移除 export_import_service.dart 硬编码版本号
+
+### 新增依赖
+- `flutter_svg: ^2.0.17` — SVG 图标渲染
+- `package_info_plus: ^8.1.0` — 运行时版本号
+
+### 测试总计: 138 tests, 0 failures
+
+---
+
 ## Session: 2026-05-26 (测试全覆盖)
 
 ### 集成测试 (C 层) ✅
@@ -21,8 +64,7 @@
 - `progress.md` — 本文档
 - 记忆文件 (MEMORY.md, project_state.md) 更新
 
-### 测试总计: 144 tests, 0 failures
-- 单元: 130 | Widget: 9 | Golden: 4 | 集成: 1
+### 测试总计: 138 tests, 0 failures
 
 ## Session: 2026-05-25 (测试 A+B 层)
 
@@ -109,16 +151,18 @@
 | v1.0.2 | 红屏崩溃修复 + 深色标签 |
 | v1.0.3 | 入口验证 + 搜索焦点 + 剪贴板开关 |
 | v1.0.4 | 应用名/图标 + 品牌图标映射 + 作者署名 |
+| v1.1.0 | 版本号系统 + 一键构建 |
+| v1.1.1 | SVG 品牌图标 + API Key + 自动锁定开关 + 代码大清理 |
+| v1.1.2 | 导航栏全适配 + 银行图标修复 + 永久开发规则 |
 
 ### 当前构建
-- v1.0.4+5, 149MB Debug APK
-- 构建时间 ~45s（增量）
+- v1.1.2+11, 51.6MB Release APK
 
 ## 5-Question Reboot
 | Q | A |
 |----|----|
-| 在哪？ | Phase 1 完成 v1.0.4，144 测试全通过 |
+| 在哪？ | Phase 1 完成 v1.1.2，138 测试全通过 |
 | 去哪？ | Phase 2: Windows 桌面版 |
 | 目标？ | 个人信息保险箱 Android + Windows |
-| 学到什么？ | 阿里云 Maven 下线、中文路径问题、showDialog 框架冲突、PBKDF2 注册表、集成测试 enterText 机制 |
-| 做了什么？ | 全栈 Flutter App + 环境 + 4 轮迭代 + 3 层测试架构 |
+| 学到什么？ | SVG ColorFilter+srcIn 白底问题、AppBarTheme overlayStyle 不适用无 AppBar 页面 |
+| 做了什么？ | 5 种信息类型 + SVG 品牌图标 + 边缘到边缘导航栏 + 代码大清理 |

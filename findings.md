@@ -1,16 +1,19 @@
 # Findings — 信息保险箱
 
 ## 产品
-- 四种类型：密码/银行卡/证件/笔记
-- 主密码 + 指纹 + 安全等级 + 智能分类
-- 剪贴板 60s 清空 + 自动锁定
+- 五种类型：密码/银行卡/证件/笔记/API Key
+- 主密码 + 智能分类 + 品牌 SVG 图标（16 AI + 8 银行）
+- 剪贴板 60s 清空 + 可开关自动锁定（默认 3 分钟）
+- Android 边缘到边缘导航栏适配
 
 ## 技术决策
 | Decision | Rationale |
 |----------|-----------|
 | Flutter 3.38.6 + Provider + sqflite | 跨平台轻量方案 |
 | encrypt + pointycastle | AES-256-GCM + PBKDF2 |
-| font_awesome_flutter | 品牌图标 |
+| font_awesome_flutter | 品牌图标 (微信/支付宝/QQ等) |
+| flutter_svg | SVG 品牌图标 (银行/AI/证件) |
+| package_info_plus | 运行时读取版本号 |
 | flutter_launcher_icons | 应用图标生成 |
 | mock MethodChannel (非 mockito) | flutter_secure_storage 测试 mock |
 
@@ -49,31 +52,27 @@
 ## 代码架构
 ```
 lib/
-├── models/   VaultItem, ItemType, SecurityLevel, Folder
-├── services/ Encryption, Auth, Database, Vault, Clipboard, SmartCategory
-├── screens/  Lock, CreatePwd, Vault, Search, Detail, AddEdit, Settings, FolderMgmt
+├── models/   VaultItem, ItemType, Folder
+├── services/ Encryption, Auth, Database, Vault, Clipboard, SmartCategory, Photo, ExportImport
+├── screens/  Lock, CreatePwd, Vault, Search, AddEdit, Settings, FolderMgmt
 ├── widgets/  PlatformIcon, TypeIcon, QuickFillChips, StaggeredList,
-│             FieldRow, ItemListTile, TypeFilterBar, FolderFilterBar, SecondaryAuthDialog
-├── theme/    AppTheme (手工色板)
-└── utils/    Constants, Validators
+│             FieldRow, ItemListTile, TypeFilterBar, FolderFilterBar
+├── theme/    AppTheme (手工色板 + overlayStyle)
+└── utils/    Constants, Validators, BrandIcons (SVG 映射，自动生成)
 ```
 
-## 测试架构
+## 测试架构 (138 tests, 0 failures)
 ```
 test/
-├── services/  130 unit tests (auth, encryption, vault, database, export_import, clipboard)
-├── models/    18 model tests (item_type)
-├── screens/   9 widget tests (lock_screen, create_password_screen, settings_screen)
-├── goldens/   4 golden tests (TypeIcon, TypeFilterBar, LockScreen, CreatePasswordScreen)
+├── services/  unit tests (auth, encryption, vault, database, export_import, clipboard)
+├── screens/   widget tests (lock_screen, create_password_screen, settings_screen)
+├── goldens/   golden tests (TypeIcon, TypeFilterBar, LockScreen, CreatePasswordScreen)
 └── widget_test.dart  1 app smoke test
-integration_test/
-├── app_test.dart      1 integration test (14 步全流程 + 9 自动截图)
-└── screenshots/       截图输出目录 (从模拟器拉取)
 ```
 
 ## 关键 Bug 解决
 1. 二次验证不弹 → FieldRow sync→async
-2. 加强安全红屏 → initState 弹窗 → 导航前验证
+2. 加强安全红屏 → initState 弹窗 → 导航前验证（已移除加强安全功能）
 3. 遮罩丢失 → isPassword: true
 4. 自动锁定失效 → WidgetsBindingObserver
 5. 剪贴板不清理 → 单例 ClipboardService
@@ -81,3 +80,6 @@ integration_test/
 7. `LockScreen._unlock()` setState after dispose → 解锁成功时 widget 已被替换，添加 `if (!mounted) return;`
 8. 集成测试 `findsOneWidget` vs `findsWidgets` → VaultScreen AppBar + NavigationBar 都有"信息保险箱"文本，应使用 `findsWidgets`
 9. DatabaseService 测试隔离 → 新增 `dbName` 可选参数
+10. 银行 SVG 不显示 → iconfont.cn SVG 含白色底色 `fill="#FFFFFF"`，`ColorFilter.mode(srcIn)` 覆盖了整个图标，删除底色路径修复
+11. 锁屏/创建密码界面导航栏未适配 → 无 AppBar 页面需用 `AnnotatedRegion<SystemUiOverlayStyle>` 手动设置，新增 `AppTheme.overlayStyle()`
+12. app_theme.dart 编译错误 → 缺失 `import 'package:flutter/services.dart'`

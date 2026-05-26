@@ -1,5 +1,0 @@
-# ninja log v5
-116	260	8014238446573423	CMakeFiles/jni.dir/include/dart_api_dl.c.o	714b8dcdc8621321
-63	283	8014238446783147	CMakeFiles/jni.dir/dartjni.c.o	4fdc8426595cf0a0
-1	392	8014238447844758	CMakeFiles/jni.dir/third_party/global_jni_env.c.o	7ebe531a7623cdd1
-392	622	8014238450086058	H:/MyPasswords/infovault/build/jni/intermediates/cxx/Debug/3b2p1f2i/obj/x86/libdartjni.so	9af656ae990d35a4
