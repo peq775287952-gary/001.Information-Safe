@@ -1,6 +1,6 @@
 # 信息保险箱 (InfoVault)
 
-个人信息安全保险箱 — Flutter Android 应用，v1.1.2
+个人信息安全保险箱 — Flutter Android 应用，v1.1.3
 
 ## 快速开始
 
@@ -24,7 +24,7 @@ flutter test integration_test/app_test.dart -d emulator-5554
 flutter build apk --debug
 ```
 
-## 测试: 138 tests, 0 failures
+## 测试: 142 tests, 0 failures
 
 | 层级 | 数量 | 说明 |
 |------|------|------|

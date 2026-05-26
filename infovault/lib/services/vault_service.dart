@@ -199,4 +199,19 @@ class VaultService extends ChangeNotifier {
             (i.idName?.toLowerCase().contains(q) ?? false))
         .toList();
   }
+
+  /// Re-encrypts all vault items from [oldKey] to [newKey] and reloads data.
+  Future<void> reEncryptAll(Uint8List oldKey, Uint8List newKey) async {
+    final rawItems = await _db.getAllItems();
+
+    for (final item in rawItems) {
+      _encryptionKey = oldKey;
+      final decrypted = _decryptItem(item);
+      _encryptionKey = newKey;
+      final reEncrypted = _encryptItem(decrypted);
+      await _db.updateItem(reEncrypted);
+    }
+
+    await setEncryptionKey(newKey);
+  }
 }

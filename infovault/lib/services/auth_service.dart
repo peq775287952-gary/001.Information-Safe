@@ -87,6 +87,29 @@ class AuthService extends ChangeNotifier {
     return match;
   }
 
+  Future<bool> changePassword(String oldPassword, String newPassword) async {
+    final oldKey = _vaultService?.encryptionKey;
+    if (oldKey == null) return false;
+
+    // Verify old password
+    final ok = await verifyMasterPassword(oldPassword);
+    if (!ok) return false;
+
+    // Derive new key and re-encrypt all data
+    final newSalt = _encryptionService.generateSalt();
+    final newKey = await _encryptionService.deriveKey(newPassword, newSalt);
+    final newHash = base64.encode(newKey);
+
+    await _vaultService?.reEncryptAll(oldKey, newKey);
+
+    // Persist new hash, salt, and master key
+    await _secureStorage.write(key: _hashKey, value: newHash);
+    await _secureStorage.write(key: _saltKey, value: base64.encode(newSalt));
+    await _encryptionService.storeMasterKey(newKey);
+
+    return true;
+  }
+
   void lock() {
     _isUnlocked = false;
     _vaultService?.clearEncryptionKey();

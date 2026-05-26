@@ -87,7 +87,7 @@ void main() {
     await tester.tap(find.text('创建并进入'));
     await tester.pumpAndSettle();
 
-    expect(find.text('主密码至少8位'), findsOneWidget);
+    expect(find.text('主密码至少4位'), findsOneWidget);
   });
 
   testWidgets('should show validation error for mismatched passwords',

@@ -97,9 +97,13 @@ void main() {
     expect(find.text('我的'), findsOneWidget);
     expect(find.text('自动锁定'), findsOneWidget);
     expect(find.text('剪贴板自动清空'), findsOneWidget);
+    expect(find.text('修改主密码'), findsOneWidget);
     expect(find.text('管理文件夹'), findsOneWidget);
     expect(find.text('导出数据'), findsOneWidget);
     expect(find.text('导入数据'), findsOneWidget);
+
+    // Scroll to bottom to bring "关于信息保险箱" into viewport
+    await tester.scrollUntilVisible(find.text('关于信息保险箱'), 100);
     expect(find.text('关于信息保险箱'), findsOneWidget);
   });
 }

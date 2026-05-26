@@ -7,6 +7,7 @@ import '../services/auth_service.dart';
 import '../services/vault_service.dart';
 import '../services/export_import_service.dart';
 import 'folder_management_screen.dart';
+import 'change_password_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -206,6 +207,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
             title: const Text('剪贴板自动清空'),
             subtitle: const Text('复制后60秒自动清空'),
             trailing: Switch(value: _clipboardEnabled, onChanged: _setClipboard),
+          ),
+          ListTile(
+            leading: const Icon(Icons.lock_reset),
+            title: const Text('修改主密码'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const ChangePasswordScreen()),
+            ),
           ),
           const Divider(),
           const _SectionHeader(title: '数据'),

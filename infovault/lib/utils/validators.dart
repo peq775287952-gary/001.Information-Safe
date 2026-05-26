@@ -28,8 +28,21 @@ class Validators {
     if (value == null || value.trim().isEmpty) {
       return '主密码不能为空';
     }
-    if (value.length < 8) {
-      return '主密码至少8位';
+    if (value.length < 4) {
+      return '主密码至少4位';
+    }
+    return null;
+  }
+
+  static String? newPassword(String? value, String oldPassword) {
+    if (value == null || value.trim().isEmpty) {
+      return '新密码不能为空';
+    }
+    if (value.length < 4) {
+      return '新密码至少4位';
+    }
+    if (value == oldPassword) {
+      return '新密码不能与旧密码相同';
     }
     return null;
   }

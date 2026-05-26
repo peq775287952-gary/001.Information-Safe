@@ -61,7 +61,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                     obscureText: _obscurePassword,
                     decoration: InputDecoration(
                       labelText: '主密码',
-                      hintText: '至少8位字符',
+                      hintText: '至少4位字符',
                       suffixIcon: IconButton(
                         icon: Icon(_obscurePassword
                             ? Icons.visibility_off

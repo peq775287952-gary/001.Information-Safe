@@ -4,14 +4,15 @@
 开发"信息保险箱"——Flutter 跨平台个人信息保险箱，Android + Windows 双端。
 
 ## Current Phase
-Phase 1: Android 本地版（v1.1.2 — 功能完整 + 138 测试全通过）
+Phase 1: Android 本地版（v1.1.3 — 修改密码功能 + 142 测试全通过）
 
-## 当前版本：v1.1.2+11
+## 当前版本：v1.1.3+12
 
 ### 已完成
-- 28+ Dart 源文件 + 138 tests (0 failures)
+- 28+ Dart 源文件 + 142 tests (0 failures)
 - 五种保险箱类型（密码/银行卡/证件/笔记/API Key）
-- 主密码 + 自动锁定开关（默认 3 分钟，可关闭）
+- 主密码 + 修改主密码（随时更换，自动重加密全部数据）+ 自动锁定开关（默认 3 分钟，可关闭）
+- 密码最短 4 位
 - 智能分类 + 自定义文件夹
 - 全字段搜索（结果按类型分组）
 - SVG 品牌图标（16 AI + 8 银行 + 5 证件）
@@ -28,7 +29,7 @@ Phase 1: Android 本地版（v1.1.2 — 功能完整 + 138 测试全通过）
 ## Phases
 
 ### Phase 0: 需求设计 ✅
-### Phase 1: Android 本地版 ✅ (v1.1.2)
+### Phase 1: Android 本地版 ✅ (v1.1.3)
 ### Phase 2: Windows 本地版 ⏸
 - Windows 桌面适配 + Windows Hello
 ### Phase 3: 扫码同步 ⏸
@@ -95,6 +96,8 @@ adb -s emulator-5554 pull /sdcard/Pictures/Screenshots/ integration_test/screens
 
 | 文件 | 说明 |
 |------|------|
+| [AGENTS.md](AGENTS.md) | **AI 协议** — 通用文档自动更新协议 (auto-doc-update) |
+| [CLAUDE.md](CLAUDE.md) | **Claude Code 配置** — 项目专属规则和命令 |
 | [TESTING.md](infovault/TESTING.md) | **测试文档** — 快速命令、架构、截图、修复记录 |
 | [findings.md](findings.md) | 研究发现 — 技术决策、踩坑记录、Bug 修复 |
 | [progress.md](progress.md) | 进度日志 — 完整开发时间线 |

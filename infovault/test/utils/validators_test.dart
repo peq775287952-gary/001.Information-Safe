@@ -121,8 +121,26 @@ void main() {
       expect(Validators.masterPassword('        '), '主密码不能为空');
     });
 
-    test('should return error for less than 8 chars', () {
-      expect(Validators.masterPassword('1234567'), '主密码至少8位');
+    test('should return error for less than 4 chars', () {
+      expect(Validators.masterPassword('123'), '主密码至少4位');
+    });
+  });
+
+  group('newPassword validator', () {
+    test('should return error for empty', () {
+      expect(Validators.newPassword('', 'old'), '新密码不能为空');
+    });
+
+    test('should return error for less than 4 chars', () {
+      expect(Validators.newPassword('12', 'old'), '新密码至少4位');
+    });
+
+    test('should return error when same as old password', () {
+      expect(Validators.newPassword('same', 'same'), '新密码不能与旧密码相同');
+    });
+
+    test('should return null for valid new password', () {
+      expect(Validators.newPassword('new123', 'old123'), null);
     });
   });
 }

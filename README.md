@@ -10,8 +10,8 @@
 [![Flutter](https://img.shields.io/badge/Flutter-3.38.6-blue.svg)](https://flutter.dev/)
 [![Dart](https://img.shields.io/badge/Dart-3.10.7-green.svg)](https://dart.dev/)
 [![SQLite](https://img.shields.io/badge/SQLite-latest-orange.svg)](https://www.sqlite.org/)
-[![Tests](https://img.shields.io/badge/Tests-138_passed-brightgreen.svg)]()
-[![Version](https://img.shields.io/badge/Version-1.1.2-purple.svg)](https://github.com/peq775287952-gary/001.Information-Safe)
+[![Tests](https://img.shields.io/badge/Tests-142_passed-brightgreen.svg)]()
+[![Version](https://img.shields.io/badge/Version-1.1.3-purple.svg)](https://github.com/peq775287952-gary/001.Information-Safe)
 
 </div>
 
@@ -32,6 +32,7 @@ Information Safe 是一个现代化的个人信息保险箱应用，专为安全
 - 📸 **附件管理**: 支持照片加密存储
 - ⚡ **自动锁定**: 可开关的后台超时自动锁定，防止数据泄露
 - 🤖 **API Key 管理**: 专门的大模型 API Key 存储类型
+- 🔄 **修改密码**: 随时更换主密码，自动重加密全部数据
 
 ---
 
@@ -85,7 +86,7 @@ SVG 渲染: flutter_svg
 
 1. **克隆项目**
    ```bash
-   git clone https://github.com/yourusername/infovault.git
+   git clone https://github.com/peq775287952-gary/001.Information-Safe.git
    cd infovault
    ```
 
@@ -228,7 +229,7 @@ AES-256-GCM 加密数据
 
 ### 测试
 
-项目包含 **138 个测试** (0 failures)，分三层：
+项目包含 **142 个测试** (0 failures)，分三层：
 - 单元测试 + Widget 测试 + Golden 截图测试
 
 详见 [TESTING.md](infovault/TESTING.md) 获取完整测试文档和快速命令。
@@ -279,12 +280,13 @@ infovault/
 
 ## 📊 版本信息
 
-### 当前版本: v1.1.2
+### 当前版本: v1.1.3
 
 #### 版本历程
 
 | 版本 | 主要更新 |
 |------|----------|
+| v1.1.3 | 修改主密码功能、密码最短位数 8→4、重加密机制 |
 | v1.1.2 | 导航栏全局适配、银行 SVG 图标修复、永久开发规则 |
 | v1.1.1 | AI API Key 类型、SVG 品牌图标系统、自动锁定开关、代码大清理 |
 | v1.1.0 | 版本号系统、一键构建脚本 |

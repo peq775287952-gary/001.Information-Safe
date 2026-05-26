@@ -1,5 +1,35 @@
 # Progress Log — 信息保险箱
 
+## Session: 2026-05-26 (auto-doc-update skill 基础设施)
+
+### 新增
+- **auto-doc-update 全局 skill**: 跨项目、跨 IDE 的自动文档更新系统
+  - Stop hook 自动触发 (Claude Code) + AGENTS.md 协议 (Trae/Cursor 等)
+  - 智能文档角色识别 (README/CHANGELOG/progress/findings/task_plan)
+  - 版本号自动检测 (CHANGELOG → 构建文件)
+  - Git 变更自动捕获 (git diff → 类型分类)
+  - 陌生项目自动询问创建文档集
+- 本项目部署 AGENTS.md + CLAUDE.md
+- `~/.claude/settings.json` Stop hook 配置 (matcher + hooks 嵌套 schema)
+
+### 测试: 142 tests, 0 failures
+
+## Session: 2026-05-26 (v1.1.3 — 修改主密码功能)
+
+### 新增
+- 修改主密码：设置→安全→修改主密码，验证旧密码后可随时更换
+- `AuthService.changePassword()` — 验证旧密码→派生新密钥→重加密全部数据→更新存储
+- `VaultService.reEncryptAll()` — 旧密钥逐条解密→新密钥加密→写回 DB→重载
+- `ChangePasswordScreen` — 3 密码框 + 验证 + 备份提醒弹窗
+- `Validators.newPassword()` — ≥4位 + 不能与旧密码相同
+
+### 变更
+- 密码最短位数 8→4 位
+- validators_test 新增 4 个 newPassword 测试
+- settings_screen_test 新增"修改主密码"断言 + scrollUntilVisible 修复
+
+### 测试: 142 tests, 0 failures
+
 ## Session: 2026-05-26 (v1.1.2 — 导航栏适配 + 图标修复)
 
 ### 新增 & 修复
@@ -15,7 +45,13 @@
 - task_plan.md、progress.md 版本同步
 - 新建 CHANGELOG.md、feedback_dev-rules.md、feedback_build-version-bump.md
 
-### 当前构建: v1.1.2+11, 51.6MB Release APK
+### GitHub 推送
+- 项目推送至 https://github.com/peq775287952-gary/001.Information-Safe.git
+- infovault 从 git submodule 转为普通目录
+- pub_cache 从 Git 追踪中移除
+- .gitignore 配置
+
+### 当前构建: v1.1.3+12 (未构建新 APK)
 
 ## Session: 2026-05-26 (v1.1.1 — 正式版) ✅
 
@@ -153,6 +189,7 @@
 | v1.0.4 | 应用名/图标 + 品牌图标映射 + 作者署名 |
 | v1.1.0 | 版本号系统 + 一键构建 |
 | v1.1.1 | SVG 品牌图标 + API Key + 自动锁定开关 + 代码大清理 |
+| v1.1.3 | 修改主密码功能 + 密码最短4位 + 重加密机制 |
 | v1.1.2 | 导航栏全适配 + 银行图标修复 + 永久开发规则 |
 
 ### 当前构建
@@ -161,8 +198,8 @@
 ## 5-Question Reboot
 | Q | A |
 |----|----|
-| 在哪？ | Phase 1 完成 v1.1.2，138 测试全通过 |
+| 在哪？ | Phase 1 完成 v1.1.3，142 测试全通过，auto-doc-update skill 已部署 |
 | 去哪？ | Phase 2: Windows 桌面版 |
 | 目标？ | 个人信息保险箱 Android + Windows |
-| 学到什么？ | SVG ColorFilter+srcIn 白底问题、AppBarTheme overlayStyle 不适用无 AppBar 页面 |
-| 做了什么？ | 5 种信息类型 + SVG 品牌图标 + 边缘到边缘导航栏 + 代码大清理 |
+| 学到什么？ | 修改密码=重加密所有数据、ListView 视口外 widget 需 scrollUntilVisible、Stop hook schema 需 matcher+hooks 嵌套 |
+| 做了什么？ | 修改主密码 + 密码最短4位 + auto-doc-update 全局 skill + AGENTS.md/CLAUDE.md |

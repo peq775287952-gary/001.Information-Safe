@@ -2,9 +2,10 @@
 
 ## 产品
 - 五种类型：密码/银行卡/证件/笔记/API Key
-- 主密码 + 智能分类 + 品牌 SVG 图标（16 AI + 8 银行）
+- 主密码 + 修改主密码（随时更换，自动重加密）+ 智能分类 + 品牌 SVG 图标（16 AI + 8 银行）
 - 剪贴板 60s 清空 + 可开关自动锁定（默认 3 分钟）
 - Android 边缘到边缘导航栏适配
+- 密码最短位数 4 位
 
 ## 技术决策
 | Decision | Rationale |
@@ -70,6 +71,18 @@ test/
 └── widget_test.dart  1 app smoke test
 ```
 
+## 开发工具链
+
+### auto-doc-update 全局 Skill
+- 跨项目、跨 IDE 的自动文档更新系统
+- Claude Code: Stop hook 自动触发 `/auto-doc-update`
+- 其他 IDE (Trae/Cursor): 读取 AGENTS.md 协议，手动"更新文档"触发
+- 智能文档角色识别: 文件名模式 (权重3) + 内容特征 (权重1, 阈值4)
+- 版本号优先级: CHANGELOG.md → build files (pubspec.yaml/package.json/etc.)
+- Git 变更自动分类: 新增/修复/移除/重构/更新/文档/构建/样式
+- 脚本工具: scan_docs.py / detect_version.py / git_changes.py (JSON 输出)
+- Stop hook 正确 schema: `hooks.Stop[].hooks[]` 嵌套 (matcher + hooks 数组)
+
 ## 关键 Bug 解决
 1. 二次验证不弹 → FieldRow sync→async
 2. 加强安全红屏 → initState 弹窗 → 导航前验证（已移除加强安全功能）
@@ -83,3 +96,12 @@ test/
 10. 银行 SVG 不显示 → iconfont.cn SVG 含白色底色 `fill="#FFFFFF"`，`ColorFilter.mode(srcIn)` 覆盖了整个图标，删除底色路径修复
 11. 锁屏/创建密码界面导航栏未适配 → 无 AppBar 页面需用 `AnnotatedRegion<SystemUiOverlayStyle>` 手动设置，新增 `AppTheme.overlayStyle()`
 12. app_theme.dart 编译错误 → 缺失 `import 'package:flutter/services.dart'`
+13. Settings 测试 ListView 视口外查找失败 → 新增条目后列表变长，"关于信息保险箱"被推至视口外，用 `scrollUntilVisible` 修复
+
+## 新功能实现记录
+
+### 修改主密码 (v1.1.3)
+- `AuthService.changePassword()` — 验证旧密码→派生新密钥→调用 `VaultService.reEncryptAll()`→更新 hash/salt/masterKey
+- `VaultService.reEncryptAll()` — 切换 `_encryptionKey` 逐条解密→新密钥加密→写回 DB→`setEncryptionKey(newKey)` 重载
+- 修改前弹窗提醒备份兼容性（旧密码导出的备份无法导入）
+- 密码最短位数从 8 降为 4 位
