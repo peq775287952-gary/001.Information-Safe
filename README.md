@@ -25,8 +25,8 @@ Information Safe 是一个现代化的个人信息保险箱应用，专为安全
 
 - 🔐 **军用级加密**: AES-256-GCM + PBKDF2 密钥派生
 - 🚀 **双端支持**: Flutter 一套代码，Android + Windows 双端运行
-- 🎨 **现代UI**: Material Design 3 + 自定义设计系统
-- 🏦 **品牌图标**: 16 家 AI 供应商 + 8 家银行真实 Logo 自动识别
+- 🎨 **现代UI**: "静谧安全"设计系统 — 手工色板、4px 网格、圆角分级
+- 🏦 **品牌图标**: 16 家 AI 供应商 + 8 家银行 + 5 类证件真实 Logo 自动识别
 - 🗂️ **智能分类**: 自动识别平台分类，支持自定义文件夹
 - 🔍 **快速搜索**: 实时搜索，多字段匹配
 - 📸 **附件管理**: 支持照片加密存储
@@ -45,9 +45,11 @@ Information Safe 是一个现代化的个人信息保险箱应用，专为安全
 编程语言: Dart 3.10.7
 状态管理: Provider
 本地存储: SQLite (sqflite + sqflite_common_ffi for Windows) + Flutter Secure Storage
-加密引擎: encrypt + crypto
-SVG 渲染: flutter_svg
+加密引擎: encrypt + pointycastle (AES-256-GCM + PBKDF2)
+品牌图标: font_awesome_flutter + flutter_svg
 图片处理: image_picker
+文件选择: file_picker
+版本信息: package_info_plus
 国际化: flutter_localizations
 ```
 
@@ -55,20 +57,22 @@ SVG 渲染: flutter_svg
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   AuthService   │    │  EncryptionService│    │ DatabaseService  │
+│   AuthService   │    │EncryptionService│    │ DatabaseService  │
 │   - 主密码管理   │    │  - AES-256-GCM  │    │  - SQLite 数据库 │
 │   - 锁定状态     │    │  - PBKDF2 密钥   │    │  - 数据加密存储  │
-│   - 失败锁定     │    │  - 安全存储     │    │  - 索引优化     │
+│   - 失败锁定     │    │  - 安全存储     │    │  - 平台 FFI 适配 │
 └────────┬────────┘    └─────────────────┘    └─────────────────┘
          │
          └──────────────────┬──────────────────┘
                             │
-                ┌─────────────────┐
-                │  VaultService   │
-                │  - 数据管理     │
-                │  - 文件夹操作   │
-                │  - 搜索功能     │
-                └─────────────────┘
+         ┌──────────────────┼──────────────────┐
+         │                  │                  │
+┌─────────────────┐ ┌──────────────┐ ┌──────────────────┐
+│  VaultService   │ │ClipboardService│ │ExportImportService│
+│  - 数据管理     │ │ - 60s 自动清空 │ │  - 加密导出导入   │
+│  - 文件夹操作   │ └──────────────┘ └──────────────────┘
+│  - 搜索功能     │
+└─────────────────┘
 ```
 
 ---
@@ -143,12 +147,6 @@ SVG 渲染: flutter_svg
 | 📝 **安全笔记** | 标题、自由文本 | ❌ |
 | 🤖 **API Key** | 供应商、API Key、接口地址、模型名称、备注 | ❌ |
 
-#### 🔒 安全等级
-
-每条记录可设两个等级：
-- **基础**：解锁 App 后自由查看/复制
-- **加强**：每次查看密码或复制时需二次验证（主密码）
-
 #### ❌ 明确不做的功能
 
 - 密码生成器
@@ -183,7 +181,7 @@ SVG 渲染: flutter_svg
 ```
 用户输入主密码
     ↓
-PBKDF2-HMAC-SHA256 (100,000+ 次迭代)
+PBKDF2-HMAC-SHA256 (10,000 次迭代 + compute Isolate)
     ↓
 生成 256-bit 加密密钥
     ↓
@@ -194,10 +192,11 @@ AES-256-GCM 加密数据
 
 ### 安全特性
 
-1. **密钥派生**: 使用 PBKDF2 算法进行100,000+次迭代，防止暴力破解
+1. **密钥派生**: 使用 PBKDF2 算法进行 10,000 次迭代（Isolate 异步执行，不阻塞 UI）
 2. **随机盐值**: 每个用户使用唯一的随机盐值
 3. **AES-256-GCM**: 业界最安全的加密算法之一
 4. **内存安全**: 加密密钥仅在内存中存在，不落盘存储
+5. **迭代迁移**: 自动检测旧版本迭代参数，无缝迁移到新参数并重加密全部数据
 
 ### 数据保护
 
@@ -232,7 +231,7 @@ AES-256-GCM 加密数据
 
 - **自适应主题**: 自动跟随系统浅色/深色模式
 - **边缘到边缘**: Android 全面屏导航栏自适应，小白条跟随 App 主题
-- **品牌图标**: 37 个 SVG 品牌图标，AI + 银行 + 证件全覆盖，支持动态着色
+- **品牌图标**: 37 个 SVG 品牌图标 + FontAwesome 品牌图标，AI + 银行 + 证件全覆盖，支持动态着色
 - **响应式布局**: 适配不同屏幕尺寸
 - **流畅动画**: 页面转场和交互动画
 
@@ -254,15 +253,16 @@ infovault/
 ├── lib/
 │   ├── models/          # 数据模型 (vault_item, item_type, folder)
 │   ├── screens/         # 页面 (vault, search, settings, lock, create_password, add_edit_item)
-│   ├── services/        # 核心服务 (auth, encryption, database, vault, photo, export_import)
+│   ├── services/        # 核心服务 (auth, encryption, database, vault, clipboard, photo, export_import)
 │   ├── widgets/         # 可复用组件 (platform_icon, quick_fill_chips, type_filter_bar 等)
-│   ├── theme/           # 主题配置 (app_theme)
-│   ├── utils/           # 工具 (brand_icons, constants, validators)
+│   ├── theme/           # 主题配置 (app_theme — "静谧安全"手工色板)
+│   ├── utils/           # 工具 (brand_icons, constants, validators, platform_utils)
 │   └── app.dart         # 应用入口
 ├── scripts/             # 构建脚本 (bump_version, download_brand_icons)
 ├── assets/icons/        # SVG 品牌图标 (37 个)
-├── test/                # 测试 (138 个)
+├── test/                # 测试 (142 个)
 ├── android/             # Android 原生配置
+├── windows/             # Windows 原生配置
 ├── pubspec.yaml
 └── CHANGELOG.md
 ```
@@ -300,7 +300,8 @@ infovault/
 | 版本 | 主要更新 |
 |------|----------|
 | v1.1.9 | QQ 图标修复、深色模式 chip 适配、SenseNove 清理、PBKDF2 迭代兼容迁移 |
-| v1.1.7 | UI/UX 6 项优化、深色模式全面适配 |
+| v1.1.8 | PBKDF2 迭代兼容迁移（100k→10k 自动迁移+全量重加密） |
+| v1.1.7 | 解锁速度 10x 提升（PBKDF2+Isolate）、深色模式全面适配 |
 | v1.1.6 | Android 包体积优化（R8 + ABI 分包），APK 降至 16-20MB |
 | v1.1.4 | 移除生物识别功能（Windows Hello + Android 指纹/人脸），代码全面清理 |
 | v1.1.3 | 修改主密码功能、密码最短位数 8→4、重加密机制 |
