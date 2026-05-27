@@ -17,6 +17,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
   final _confirmController = TextEditingController();
   bool _obscurePassword = true;
   bool _obscureConfirm = true;
+  bool _isSubmitting = false;
 
   @override
   void dispose() {
@@ -26,10 +27,26 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
   }
 
   Future<void> _submit() async {
+    if (_isSubmitting) return;
     if (!_formKey.currentState!.validate()) return;
-    await context.read<AuthService>().setMasterPassword(
-      _passwordController.text.trim(),
-    );
+
+    setState(() => _isSubmitting = true);
+    try {
+      await context.read<AuthService>().setMasterPassword(
+        _passwordController.text.trim(),
+      );
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('创建失败: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isSubmitting = false);
+    }
   }
 
   @override
@@ -96,8 +113,13 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                     width: double.infinity,
                     height: 48,
                     child: FilledButton(
-                      onPressed: _submit,
-                      child: const Text('创建并进入'),
+                      onPressed: _isSubmitting ? null : _submit,
+                      child: _isSubmitting
+                          ? const SizedBox(
+                              height: 20, width: 20,
+                              child: CircularProgressIndicator(
+                                  strokeWidth: 2, color: Colors.white))
+                          : const Text('创建并进入'),
                     ),
                   ),
                 ],

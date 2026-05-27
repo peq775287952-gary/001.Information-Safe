@@ -1,5 +1,64 @@
 # 更新日志
 
+## v1.1.7+16 (2026-05-27)
+
+### 优化
+- **解锁速度提升 10x**: PBKDF2 迭代次数 100,000→10,000 + `compute()` Isolate 隔离，UI 不再卡顿
+- **深色模式全面适配**:
+  - 文件夹筛选栏文字颜色自适应（brightness 检测）
+  - Switch 开关组件深色模式配色（SwitchThemeData）
+  - 深色图标（抖音/GitHub/Steam 等）深色模式自动提亮（luminance 检测）
+- **搜索框键盘行为优化**: 改用 FocusNode + postFrameCallback，返回时不再自动弹出
+- **文件夹选择改进**: 编辑页新增"无文件夹"选项，可清除已选文件夹
+
+### 修复
+- `lock_screen_test.dart` 适配 `compute()` Isolate 测试（使用 `runAsync` 等待异步）
+
+### 测试
+- 142 项测试全部通过
+
+## v1.1.6+15 (2026-05-27)
+
+### 优化
+- **Android 包体积优化**: 启用 R8 代码压缩 + 资源缩减 + ABI 分包
+  - armeabi-v7a: 16.5MB
+  - arm64-v8a: 18.8MB
+  - x86_64: 20.0MB
+- **ProGuard 规则**: 添加 Google Play Core 库 keep 规则，修复 R8 编译失败
+
+### 修复
+- `create_password_screen.dart` 添加 try-catch 错误处理 + 加载状态
+
+### 测试
+- 142 项测试全部通过
+
+## v1.1.4+13 (2026-05-27)
+
+### 移除
+- **生物识别功能完全移除**: 删除 `BiometricService`、`local_auth` 依赖、Windows Hello 集成
+- 清理 `AuthService.authenticateWithBiometrics()` 及 `_biometricService` 字段
+- 清理 `LockScreen` 指纹解锁按钮 UI
+- 清理 `SettingsScreen` 生物识别开关 UI
+- 清理 `constants.dart` 中 `biometricEnabledKey`
+- 清理 3 个测试文件中的 `BiometricService` mock 和 Provider 注册
+- 移除 `pubspec.yaml` 中 `local_auth: ^2.3.0` 依赖
+- 更新 Windows 插件注册文件（移除 `local_auth_windows`）
+
+## v1.2.0+13 (2026-05-26)
+
+### 新增
+- **Windows 桌面版支持**: sqflite FFI 数据库适配、平台条件初始化
+- **平台工具函数**: `platform_utils.dart` — 数据库路径、平台检测
+- **Windows 构建脚本**: `build_windows.bat`
+
+### 变更
+- `DatabaseService` 桌面端使用 `databaseFactoryFfi` 替代默认 sqflite
+- `main.dart` 桌面端初始化 `sqfliteFfiInit()`
+- Android `edge-to-edge` 条件化（仅 Android 启用，桌面端跳过）
+
+### 依赖
+- `sqflite_common_ffi: ^2.3.4+4` 从 dev 提升为正式依赖
+
 ## v1.1.3+12 (2026-05-26)
 
 ### 新增

@@ -73,7 +73,7 @@ class _LockScreenState extends State<LockScreen> {
                     prefixIcon: const Icon(Icons.key),
                   ),
                   onSubmitted: (_) => _unlock(),
-                ),
+                  ),
                 const SizedBox(height: 16),
                 SizedBox(
                   width: double.infinity,

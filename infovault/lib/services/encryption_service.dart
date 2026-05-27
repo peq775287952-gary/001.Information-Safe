@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:math';
-import 'dart:typed_data';
 
 import 'package:encrypt/encrypt.dart' as encrypt_lib;
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:pointycastle/digests/sha256.dart';
 import 'package:pointycastle/key_derivators/api.dart';
@@ -28,10 +28,21 @@ class EncryptionService {
   }
 
   /// Derives a 256-bit key from [password] and [salt] using PBKDF2-HMAC-SHA256.
+  /// Runs in a separate isolate to avoid blocking the UI thread.
   Future<Uint8List> deriveKey(String password, Uint8List salt) async {
+    return compute(_deriveKeyInIsolate, _DeriveKeyParams(password, salt, AppConstants.pbkdf2Iterations));
+  }
+
+  /// Derives a key with a specific [iterations] count (used for migration).
+  Future<Uint8List> deriveKeyWithIterations(String password, Uint8List salt, int iterations) async {
+    return compute(_deriveKeyInIsolate, _DeriveKeyParams(password, salt, iterations));
+  }
+
+  /// Isolate function for PBKDF2 key derivation.
+  static Uint8List _deriveKeyInIsolate(_DeriveKeyParams params) {
     final derivator = PBKDF2KeyDerivator(HMac(SHA256Digest(), 64));
-    derivator.init(Pbkdf2Parameters(salt, AppConstants.pbkdf2Iterations, 32));
-    return Uint8List.fromList(derivator.process(utf8.encode(password)));
+    derivator.init(Pbkdf2Parameters(params.salt, params.iterations, 32));
+    return Uint8List.fromList(derivator.process(utf8.encode(params.password)));
   }
 
   /// Encrypts [plaintext] with [key] using AES-256-GCM.
@@ -111,4 +122,12 @@ class EncryptionService {
   Future<void> deleteMasterKey() async {
     await _secureStorage.delete(key: _keyAlias);
   }
+}
+
+/// Parameters for isolate key derivation.
+class _DeriveKeyParams {
+  final String password;
+  final Uint8List salt;
+  final int iterations;
+  const _DeriveKeyParams(this.password, this.salt, this.iterations);
 }

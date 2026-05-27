@@ -43,6 +43,7 @@ void main() {
         }
       },
     );
+
   });
 
   setUp(() {
@@ -116,8 +117,10 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: ChangeNotifierProvider<AuthService>.value(
-            value: authService,
+          home: MultiProvider(
+            providers: [
+              ChangeNotifierProvider<AuthService>.value(value: authService),
+            ],
             child: const LockScreen(),
           ),
         ),

@@ -199,16 +199,16 @@ class AppTheme {
       // ── Chips ──
       chipTheme: ChipThemeData(
         backgroundColor: colors.surfaceContainerHighest,
-        selectedColor: surfaceBlue,
+        selectedColor: colors.primaryContainer,
         shape: const StadiumBorder(),
         side: const BorderSide(color: Colors.transparent),
-        labelStyle: const TextStyle(
+        labelStyle: TextStyle(
           fontSize: 13, fontWeight: FontWeight.w500,
-          color: lightTextSecondary,
+          color: isLight ? lightTextSecondary : darkTextPrimary,
         ),
-        secondaryLabelStyle: const TextStyle(
+        secondaryLabelStyle: TextStyle(
           fontSize: 13, fontWeight: FontWeight.w500,
-          color: brandBlue,
+          color: isLight ? brandBlue : const Color(0xFF3B82F6),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 4),
       ),
@@ -277,6 +277,22 @@ class AppTheme {
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radiusSm)),
         contentTextStyle: const TextStyle(fontSize: 14, color: Colors.white),
+      ),
+
+      // ── Switch ──
+      switchTheme: SwitchThemeData(
+        thumbColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return Colors.white;
+          }
+          return isLight ? Colors.grey.shade400 : Colors.grey.shade600;
+        }),
+        trackColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return colors.primary;
+          }
+          return isLight ? Colors.grey.shade300 : Colors.grey.shade800;
+        }),
       ),
 
       // ── Page Transition ──

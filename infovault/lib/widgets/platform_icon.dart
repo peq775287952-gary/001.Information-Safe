@@ -18,7 +18,7 @@ class PlatformIcon extends StatelessWidget {
     'WeChat': _BrandInfo(FontAwesomeIcons.weixin, Color(0xFF07C160)),
     '支付宝': _BrandInfo(FontAwesomeIcons.alipay, Color(0xFF1677FF)),
     'alipay': _BrandInfo(FontAwesomeIcons.alipay, Color(0xFF1677FF)),
-    'QQ': _BrandInfo(Icons.chat_bubble_rounded, Color(0xFF12B7F5)),
+    'QQ': _BrandInfo(FontAwesomeIcons.qq, Color(0xFF12B7F5)),
     '微博': _BrandInfo(FontAwesomeIcons.weibo, Color(0xFFE6162D)),
     '抖音': _BrandInfo(FontAwesomeIcons.tiktok, Color(0xFF000000)),
     'GitHub': _BrandInfo(FontAwesomeIcons.github, Color(0xFF24292E)),
@@ -100,13 +100,17 @@ class PlatformIcon extends StatelessWidget {
   }
 
   Widget _iconContainer(IconData icon, Color iconColor) {
+    final isDark = WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark;
+    final effectiveColor = isDark && iconColor.computeLuminance() < 0.2
+        ? Colors.white
+        : iconColor;
     return Container(
       width: size, height: size,
       decoration: BoxDecoration(
-        color: iconColor.withAlpha(25),
+        color: iconColor.withAlpha(isDark ? 50 : 25),
         borderRadius: BorderRadius.circular(size / 3),
       ),
-      child: Icon(icon, size: size * 0.55, color: iconColor),
+      child: Icon(icon, size: size * 0.55, color: effectiveColor),
     );
   }
 

@@ -41,6 +41,7 @@ void main() {
         }
       },
     );
+
   });
 
   late AuthService authService;
@@ -50,6 +51,7 @@ void main() {
     _mockStorage.clear();
     encryptionService = EncryptionService();
     authService = AuthService(encryptionService);
+
     final salt = encryptionService.generateSalt();
     final key = await encryptionService.deriveKey('MyPass123', salt);
     _mockStorage['master_password_hash'] = base64.encode(key);
@@ -59,8 +61,10 @@ void main() {
 
   Widget buildTestWidget() {
     return MaterialApp(
-      home: ChangeNotifierProvider<AuthService>.value(
-        value: authService,
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<AuthService>.value(value: authService),
+        ],
         child: const LockScreen(),
       ),
     );
@@ -88,6 +92,12 @@ void main() {
 
     await tester.enterText(find.byType(TextField), 'WrongPassword');
     await tester.tap(find.text('解锁'));
+    // pump one frame to start the async unlock flow
+    await tester.pump();
+    // runAsync lets real async (compute() isolate) complete
+    await tester.runAsync(() => Future.delayed(const Duration(seconds: 2)));
+    // pump frames to process the result
+    await tester.pump();
     await tester.pumpAndSettle();
 
     expect(find.textContaining('主密码错误'), findsOneWidget);

@@ -14,11 +14,21 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final _searchController = TextEditingController();
+  final _focusNode = FocusNode();
   List<VaultItem> _results = [];
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _focusNode.requestFocus();
+    });
+  }
 
   @override
   void dispose() {
     _searchController.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -36,7 +46,7 @@ class _SearchScreenState extends State<SearchScreen> {
       appBar: AppBar(
         title: TextField(
           controller: _searchController,
-          autofocus: true,
+          focusNode: _focusNode,
           decoration: const InputDecoration(
             hintText: '搜索平台名、用户名、卡号、证件号...',
             border: InputBorder.none,

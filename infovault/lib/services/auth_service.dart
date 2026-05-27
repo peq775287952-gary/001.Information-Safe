@@ -13,6 +13,7 @@ class AuthService extends ChangeNotifier {
   static const _hashKey = 'master_password_hash';
   static const _saltKey = 'master_password_salt';
   static const _failedCountKey = 'failed_attempts';
+  static const _iterationsKey = 'pbkdf2_iterations';
 
   bool _isUnlocked = false;
   bool _hasMasterPassword = false;
@@ -46,6 +47,7 @@ class AuthService extends ChangeNotifier {
 
     await _secureStorage.write(key: _hashKey, value: hash);
     await _secureStorage.write(key: _saltKey, value: base64.encode(salt));
+    await _secureStorage.write(key: _iterationsKey, value: AppConstants.pbkdf2Iterations.toString());
 
     // Same PBKDF2-derived key powers both verification and encryption.
     await _encryptionService.storeMasterKey(derivedKey);
@@ -64,9 +66,30 @@ class AuthService extends ChangeNotifier {
     if (storedHash == null || saltEncoded == null) return false;
 
     final salt = Uint8List.fromList(base64.decode(saltEncoded));
-    final derivedKey = await _encryptionService.deriveKey(password, salt);
-    final hash = base64.encode(derivedKey);
-    final match = hash == storedHash;
+    final storedIterationsStr = await _secureStorage.read(key: _iterationsKey);
+    final storedIterations = storedIterationsStr != null
+        ? int.tryParse(storedIterationsStr) ?? AppConstants.legacyPbkdf2Iterations
+        : AppConstants.legacyPbkdf2Iterations;
+    final currentIterations = AppConstants.pbkdf2Iterations;
+    final needsMigration = storedIterations != currentIterations;
+
+    Uint8List derivedKey;
+    bool match;
+
+    if (needsMigration) {
+      // Verify with old iterations first
+      derivedKey = await _encryptionService.deriveKeyWithIterations(password, salt, storedIterations);
+      match = base64.encode(derivedKey) == storedHash;
+
+      if (match) {
+        // Migrate: re-derive with new iterations + re-encrypt all data
+        await _migrateIterations(password, salt, derivedKey);
+        return true;
+      }
+    } else {
+      derivedKey = await _encryptionService.deriveKey(password, salt);
+      match = base64.encode(derivedKey) == storedHash;
+    }
 
     if (match) {
       _failedAttempts = 0;
@@ -85,6 +108,24 @@ class AuthService extends ChangeNotifier {
 
     await _saveFailedCount();
     return match;
+  }
+
+  Future<void> _migrateIterations(String password, Uint8List salt, Uint8List oldKey) async {
+    final newSalt = _encryptionService.generateSalt();
+    final newKey = await _encryptionService.deriveKeyWithIterations(password, newSalt, AppConstants.pbkdf2Iterations);
+    final newHash = base64.encode(newKey);
+
+    await _vaultService?.reEncryptAll(oldKey, newKey);
+
+    await _secureStorage.write(key: _hashKey, value: newHash);
+    await _secureStorage.write(key: _saltKey, value: base64.encode(newSalt));
+    await _secureStorage.write(key: _iterationsKey, value: AppConstants.pbkdf2Iterations.toString());
+    await _encryptionService.storeMasterKey(newKey);
+    await _vaultService?.setEncryptionKey(newKey);
+
+    _failedAttempts = 0;
+    _isUnlocked = true;
+    notifyListeners();
   }
 
   Future<bool> changePassword(String oldPassword, String newPassword) async {

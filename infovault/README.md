@@ -1,6 +1,6 @@
 # 信息保险箱 (InfoVault)
 
-个人信息安全保险箱 — Flutter Android 应用，v1.1.3
+个人信息安全保险箱 — Flutter Android + Windows 双端应用，v1.1.6
 
 ## 快速开始
 

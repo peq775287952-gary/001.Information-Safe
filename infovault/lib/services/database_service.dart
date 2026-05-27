@@ -1,4 +1,5 @@
-import 'package:sqflite/sqflite.dart';
+import 'dart:io' show Platform;
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:path/path.dart' as p;
 import '../models/vault_item.dart';
 import '../models/item_type.dart';
@@ -18,6 +19,19 @@ class DatabaseService {
   }
 
   Future<Database> _initDatabase() async {
+    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+      final dbPath = await getDatabasesPath();
+      final path = p.join(dbPath, _dbName);
+      return await databaseFactoryFfi.openDatabase(
+        path,
+        options: OpenDatabaseOptions(
+          version: AppConstants.dbVersion,
+          onCreate: _onCreate,
+          onUpgrade: _onUpgrade,
+        ),
+      );
+    }
+    // Android/iOS: use default sqflite
     final dbPath = await getDatabasesPath();
     final path = p.join(dbPath, _dbName);
     return await openDatabase(

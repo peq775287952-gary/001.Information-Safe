@@ -89,7 +89,7 @@ class QuickFillChips extends StatelessWidget {
         return [
           const _QuickOption('微信', FontAwesomeIcons.weixin, Color(0xFF07C160)),
           const _QuickOption('支付宝', FontAwesomeIcons.alipay, Color(0xFF1677FF)),
-          const _QuickOption('QQ', Icons.chat_bubble_outline, Color(0xFF000000)),
+          const _QuickOption('QQ', FontAwesomeIcons.qq, Color(0xFF12B7F5)),
           const _QuickOption('微博', FontAwesomeIcons.weibo, Color(0xFFE6162D)),
           const _QuickOption('抖音', FontAwesomeIcons.tiktok, Color(0xFF000000)),
           const _QuickOption('GitHub', FontAwesomeIcons.github, Color(0xFF24292E)),
@@ -143,7 +143,6 @@ class QuickFillChips extends StatelessWidget {
           _aiQuick('GLM', const Color(0xFF2563EB)),
           _aiQuick('智谱', const Color(0xFF2563EB)),
           _aiQuick('MiniMax', const Color(0xFF7C3AED)),
-          _aiQuick('SenseNove', const Color(0xFF1E40AF)),
           _aiQuick('商汤', const Color(0xFF1E40AF)),
         ];
     }

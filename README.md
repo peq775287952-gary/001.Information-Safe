@@ -11,7 +11,7 @@
 [![Dart](https://img.shields.io/badge/Dart-3.10.7-green.svg)](https://dart.dev/)
 [![SQLite](https://img.shields.io/badge/SQLite-latest-orange.svg)](https://www.sqlite.org/)
 [![Tests](https://img.shields.io/badge/Tests-142_passed-brightgreen.svg)]()
-[![Version](https://img.shields.io/badge/Version-1.1.3-purple.svg)](https://github.com/peq775287952-gary/001.Information-Safe)
+[![Version](https://img.shields.io/badge/Version-1.1.9-purple.svg)](https://github.com/peq775287952-gary/001.Information-Safe)
 
 </div>
 
@@ -44,7 +44,7 @@ Information Safe 是一个现代化的个人信息保险箱应用，专为安全
 前端框架: Flutter 3.38.6
 编程语言: Dart 3.10.7
 状态管理: Provider
-本地存储: SQLite + Flutter Secure Storage
+本地存储: SQLite (sqflite + sqflite_common_ffi for Windows) + Flutter Secure Storage
 加密引擎: encrypt + crypto
 SVG 渲染: flutter_svg
 图片处理: image_picker
@@ -59,16 +59,16 @@ SVG 渲染: flutter_svg
 │   - 主密码管理   │    │  - AES-256-GCM  │    │  - SQLite 数据库 │
 │   - 锁定状态     │    │  - PBKDF2 密钥   │    │  - 数据加密存储  │
 │   - 失败锁定     │    │  - 安全存储     │    │  - 索引优化     │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         │                       │                       │
-         └───────────────────────┼───────────────────────┘
-                                 │
-                    ┌─────────────────┐
-                    │  VaultService  │
-                    │  - 数据管理     │
-                    │  - 文件夹操作   │
-                    │  - 搜索功能     │
-                    └─────────────────┘
+└────────┬────────┘    └─────────────────┘    └─────────────────┘
+         │
+         └──────────────────┬──────────────────┘
+                            │
+                ┌─────────────────┐
+                │  VaultService   │
+                │  - 数据管理     │
+                │  - 文件夹操作   │
+                │  - 搜索功能     │
+                └─────────────────┘
 ```
 
 ---
@@ -142,6 +142,19 @@ SVG 渲染: flutter_svg
 | 🪪 **证件** | 证件类型、证件号、姓名、签发机关、有效期、备注 | ✅ (最多3张) |
 | 📝 **安全笔记** | 标题、自由文本 | ❌ |
 | 🤖 **API Key** | 供应商、API Key、接口地址、模型名称、备注 | ❌ |
+
+#### 🔒 安全等级
+
+每条记录可设两个等级：
+- **基础**：解锁 App 后自由查看/复制
+- **加强**：每次查看密码或复制时需二次验证（主密码）
+
+#### ❌ 明确不做的功能
+
+- 密码生成器
+- 在线账号注册/登录
+- 与他人分享密码
+- 浏览器插件/自动填充
 
 #### 🔍 搜索功能
 
@@ -280,12 +293,16 @@ infovault/
 
 ## 📊 版本信息
 
-### 当前版本: v1.1.3
+### 当前版本: v1.1.9
 
 #### 版本历程
 
 | 版本 | 主要更新 |
 |------|----------|
+| v1.1.9 | QQ 图标修复、深色模式 chip 适配、SenseNove 清理、PBKDF2 迭代兼容迁移 |
+| v1.1.7 | UI/UX 6 项优化、深色模式全面适配 |
+| v1.1.6 | Android 包体积优化（R8 + ABI 分包），APK 降至 16-20MB |
+| v1.1.4 | 移除生物识别功能（Windows Hello + Android 指纹/人脸），代码全面清理 |
 | v1.1.3 | 修改主密码功能、密码最短位数 8→4、重加密机制 |
 | v1.1.2 | 导航栏全局适配、银行 SVG 图标修复、永久开发规则 |
 | v1.1.1 | AI API Key 类型、SVG 品牌图标系统、自动锁定开关、代码大清理 |
@@ -298,7 +315,7 @@ infovault/
 | 阶段 | 状态 | 目标 |
 |------|------|------|
 | Phase 1: Android 本地版 | ✅ 完成 | 手机端完整可用 |
-| Phase 2: Windows 桌面版 | 🚧 进行中 | 电脑端完整可用 |
+| Phase 2: Windows 桌面版 | ✅ 基础完成 | 电脑端完整可用（生物识别已移除） |
 | Phase 3: 双端扫码同步 | 📋 待规划 | 二维码加密传输 |
 | Phase 4: 云端加密储存 | 📋 待规划 | 多设备自动同步 |
 

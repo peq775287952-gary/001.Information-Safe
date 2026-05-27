@@ -512,6 +512,7 @@ class _AddEditItemScreenState extends State<AddEditItemScreen> {
           ),
           hint: const Text('选择文件夹（可选）'),
           items: [
+            const DropdownMenuItem(value: '', child: Text('无文件夹')),
             for (final f in folders)
               DropdownMenuItem(value: f.id, child: Text(f.name)),
           ],

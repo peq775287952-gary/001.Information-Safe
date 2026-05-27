@@ -37,13 +37,20 @@ class TypeFilterBar extends StatelessWidget {
         itemBuilder: (context, index) {
           final item = items[index];
           final isSelected = item.type == selected;
+          final isDark = Theme.of(context).brightness == Brightness.dark;
           return FilterChip(
             label: Text(
               '${item.icon ?? ''} ${item.label} ${item.count}',
-              style: const TextStyle(fontSize: 12),
+              style: TextStyle(
+                fontSize: 12,
+                color: isSelected
+                    ? Theme.of(context).colorScheme.onPrimaryContainer
+                    : isDark ? Colors.white70 : null,
+              ),
             ),
             selected: isSelected,
             onSelected: (_) => onSelected(item.type),
+            selectedColor: Theme.of(context).colorScheme.primaryContainer,
             visualDensity: VisualDensity.compact,
           );
         },

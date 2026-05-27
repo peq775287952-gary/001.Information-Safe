@@ -19,7 +19,6 @@ class BrandIcons {
     '文心一言': IconInfo('assets/icons/ernie.svg', Color(0xFF2468E6)),
     '混元': IconInfo('assets/icons/hunyuan.svg', Color(0xFF00C3B1)),
     '讯飞星火': IconInfo('assets/icons/spark.svg', Color(0xFF2B65F5)),
-    'SenseNove': IconInfo('assets/icons/sensenova.svg', Color(0xFF1E40AF)),
     '商汤': IconInfo('assets/icons/sensetime.svg', Color(0xFF1E40AF)),
   };
   static const bankBrands = <String, IconInfo>{

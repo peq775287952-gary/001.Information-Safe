@@ -88,14 +88,18 @@ class VaultScreen extends StatelessWidget {
                             child: ItemListTile(
                               item: item,
                               onTap: () {
-                                FocusScope.of(context).unfocus();
+                                FocusScope.of(context).requestFocus(FocusNode());
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (_) =>
                                         ItemDetailScreen(itemId: item.id),
                                   ),
-                                );
+                                ).then((_) {
+                                  if (context.mounted) {
+                                    FocusScope.of(context).requestFocus(FocusNode());
+                                  }
+                                });
                               },
                             ),
                           );

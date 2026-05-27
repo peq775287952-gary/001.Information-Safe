@@ -1,5 +1,8 @@
 #include "flutter_window.h"
+
 #include <optional>
+
+#include "flutter/generated_plugin_registrant.h"
 
 FlutterWindow::FlutterWindow(const flutter::DartProject& project)
     : project_(project) {}
@@ -13,15 +16,26 @@ bool FlutterWindow::OnCreate() {
 
   RECT frame = GetClientArea();
 
-  flutter::FlutterViewController::ViewProperties view_properties = {
-      .width = static_cast<double>(frame.right - frame.left),
-      .height = static_cast<double>(frame.bottom - frame.top),
-  };
-
+  // The size here must match the window dimensions to avoid unnecessary surface
+  // creation / destruction in the startup path.
   flutter_controller_ = std::make_unique<flutter::FlutterViewController>(
-      view_properties, project_);
-  HWND host = flutter_controller_->GetNativeWindow()->GetNativeWindow();
-  ::SetParent(host, GetHandle());
+      frame.right - frame.left, frame.bottom - frame.top, project_);
+  // Ensure that basic setup of the controller was successful.
+  if (!flutter_controller_->engine() || !flutter_controller_->view()) {
+    return false;
+  }
+  RegisterPlugins(flutter_controller_->engine());
+  SetChildContent(flutter_controller_->view()->GetNativeWindow());
+
+  flutter_controller_->engine()->SetNextFrameCallback([&]() {
+    this->Show();
+  });
+
+  // Flutter can complete the first frame before the "show window" callback is
+  // registered. The following call ensures a frame is pending to ensure the
+  // window is shown. It is a no-op if the first frame hasn't completed yet.
+  flutter_controller_->ForceRedraw();
+
   return true;
 }
 
@@ -29,16 +43,19 @@ void FlutterWindow::OnDestroy() {
   if (flutter_controller_) {
     flutter_controller_ = nullptr;
   }
+
   Win32Window::OnDestroy();
 }
 
-LRESULT FlutterWindow::MessageHandler(HWND hwnd, UINT const message,
-                                       WPARAM const wparam,
-                                       LPARAM const lparam) noexcept {
+LRESULT
+FlutterWindow::MessageHandler(HWND hwnd, UINT const message,
+                              WPARAM const wparam,
+                              LPARAM const lparam) noexcept {
+  // Give Flutter, including plugins, an opportunity to handle window messages.
   if (flutter_controller_) {
     std::optional<LRESULT> result =
         flutter_controller_->HandleTopLevelWindowProc(hwnd, message, wparam,
-                                                       lparam);
+                                                      lparam);
     if (result) {
       return *result;
     }
@@ -46,10 +63,7 @@ LRESULT FlutterWindow::MessageHandler(HWND hwnd, UINT const message,
 
   switch (message) {
     case WM_FONTCHANGE:
-      flutter_controller_->ForceRedraw();
-      break;
-    case WM_RESIZE:
-      flutter_controller_->ForceRedraw();
+      flutter_controller_->engine()->ReloadSystemFonts();
       break;
   }
 

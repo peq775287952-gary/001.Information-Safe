@@ -35,10 +35,13 @@ class FolderFilterBar extends StatelessWidget {
               )),
           GestureDetector(
             onTap: onAddFolder,
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Chip(
-                label: Text('+ 新建', style: TextStyle(fontSize: 11)),
+                label: Text('+ 新建', style: TextStyle(
+                  fontSize: 11,
+                  color: Theme.of(context).colorScheme.onSurface,
+                )),
                 visualDensity: VisualDensity.compact,
               ),
             ),
@@ -61,10 +64,21 @@ class _FolderChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       child: ActionChip(
-        label: Text(label, style: const TextStyle(fontSize: 11)),
+        label: Text(
+          label,
+          style: TextStyle(
+            fontSize: 11,
+            color: isSelected
+                ? Theme.of(context).colorScheme.onPrimaryContainer
+                : isDark
+                    ? Colors.white70
+                    : null,
+          ),
+        ),
         onPressed: onTap,
         visualDensity: VisualDensity.compact,
         backgroundColor: isSelected
