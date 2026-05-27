@@ -6,11 +6,23 @@
 
 | 问题 | 答案 |
 |------|------|
-| 在哪？ | v1.1.9，142 测试全通过，Android 分包构建正常 |
+| 在哪？ | v1.1.9，142 测试全通过，文档整理完毕，已推送到 Git |
 | 去哪？ | 用户确认后构建分发；Phase 3 扫码同步待规划 |
 | 目标？ | 个人信息保险箱 Android + Windows 双端 |
 | 学到什么？ | PBKDF2 迭代变更需兼容迁移；EncryptedSharedPreferences 卸载即丢失 |
-| 做了什么？ | QQ 图标修复、深色模式 chip 适配、SenseNove 删除、PBKDF2 迁移逻辑 |
+| 做了什么？ | 文档整理：5 个历史文档归档+合并，项目文档迁移至 docs/project/，README 更新至 v1.1.9 |
+
+---
+
+## Session: 2026-05-28 (文档整理 + 项目文档迁移)
+
+### 文档整理
+- **docs/superpowers/ 归档**: 4 个历史文档移至 `archive/`（Phase 1 计划、产品设计、UI 优化方案、UI 重设计章程）
+- **内容合并**: 产品定位+路线图→task_plan.md，安全等级+不做的功能→README.md，UI 设计系统→findings.md
+- **项目文档迁移**: `progress.md`、`findings.md`、`task_plan.md` 从根目录移至 `docs/project/`
+- **引用同步**: AGENTS.md、MEMORY.md 中所有引用路径已更新
+- **README.md 更新**: 版本信息更新至 v1.1.9，补充 v1.1.7/v1.1.8 版本记录，Phase 2 状态更新
+- **Git 提交推送**: 49cba77，62 files changed
 
 ---
 
