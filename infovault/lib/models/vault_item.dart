@@ -69,19 +69,22 @@ class VaultItem {
       case ItemType.password:
         return username ?? email ?? '';
       case ItemType.bankCard:
-        return cardNumber != null
+        if (cardNumber == null || cardNumber!.isEmpty) return '';
+        return cardNumber!.length >= 4
             ? '**** ${cardNumber!.substring(cardNumber!.length - 4)}'
-            : '';
+            : '**** $cardNumber';
       case ItemType.idDocument:
-        return idNumber != null
+        if (idNumber == null || idNumber!.isEmpty) return '';
+        return idNumber!.length >= 4
             ? '**** ${idNumber!.substring(idNumber!.length - 4)}'
-            : '';
+            : '**** $idNumber';
       case ItemType.secureNote:
         return noteContent != null ? '**** ****' : '';
       case ItemType.apiKey:
-        return apiKey != null
+        if (apiKey == null || apiKey!.isEmpty) return '';
+        return apiKey!.length >= 4
             ? '**** ${apiKey!.substring(apiKey!.length - 4)}'
-            : '';
+            : '**** $apiKey';
     }
   }
 

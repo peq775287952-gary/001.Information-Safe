@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 import 'encryption_service.dart';
 import 'database_service.dart';
@@ -49,7 +49,11 @@ class ExportImportService {
     );
 
     if (result != null) {
-      try { await file.delete(); } catch (_) {}
+      try {
+        await file.delete();
+      } catch (e) {
+        debugPrint('Failed to delete temp export file: $e');
+      }
       return result;
     }
     return file.path;
@@ -73,6 +77,10 @@ class ExportImportService {
     );
     final payload = json.decode(utf8.decode(decrypted)) as Map<String, dynamic>;
 
+    if (payload['version'] != 1) {
+      throw Exception('不支持的备份版本');
+    }
+
     final folders = (payload['folders'] as List<dynamic>?)
         ?.map((m) => Map<String, dynamic>.from(m as Map))
         .toList() ?? [];
@@ -81,13 +89,34 @@ class ExportImportService {
         .toList() ?? [];
 
     for (final f in folders) {
+      _validateFolder(f);
       await _db.insertFolderRaw(f);
     }
     for (final i in items) {
+      _validateItem(i);
       await _db.insertItemRaw(i);
     }
 
     await _vault.loadAll();
     return items.length;
+  }
+
+  static const _requiredFolderKeys = {'id', 'name'};
+  static const _requiredItemKeys = {'id', 'type', 'title'};
+
+  void _validateFolder(Map<String, dynamic> map) {
+    for (final key in _requiredFolderKeys) {
+      if (!map.containsKey(key) || map[key] is! String) {
+        throw Exception('备份数据格式错误: 文件夹缺少 $key 字段');
+      }
+    }
+  }
+
+  void _validateItem(Map<String, dynamic> map) {
+    for (final key in _requiredItemKeys) {
+      if (!map.containsKey(key) || map[key] is! String) {
+        throw Exception('备份数据格式错误: 条目缺少 $key 字段');
+      }
+    }
   }
 }

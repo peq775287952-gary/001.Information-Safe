@@ -27,9 +27,9 @@ class AppTheme {
   static const Color lightTextTitle = Color(0xFF0F172A);
 
   // ── Dark Palette ──
-  static const Color darkBg = Color(0xFF0B1120);
-  static const Color darkCard = Color(0xFF1E293B);
-  static const Color darkSurface = Color(0xFF334155);
+  static const Color darkBg = Color(0xFF202020);
+  static const Color darkCard = Color(0xFF2D2D2D);
+  static const Color darkSurface = Color(0xFF383838);
   static const Color darkBorder = Color(0xFF334155);
   static const Color darkTextSecondary = Color(0xFF94A3B8);
   static const Color darkTextPrimary = Color(0xFFE2E8F0);

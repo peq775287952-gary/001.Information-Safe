@@ -1,16 +1,119 @@
 # Progress Log — 信息保险箱
 
-## 当前状态: v1.1.9+18 | 142 tests | 2026-05-28
+## 当前状态: v1.2.1+20 | 142 tests | 2026-05-28
 
 ### 断点续接
 
 | 问题 | 答案 |
 |------|------|
-| 在哪？ | v1.1.9，142 测试全通过，文档整理完毕，已推送到 Git |
-| 去哪？ | 用户确认后构建分发；Phase 3 扫码同步待规划 |
+| 在哪？ | v1.2.1，142 测试全通过，Windows 端 Fluent UI + Bug 修复 + MSIX 打包完成 |
+| 去哪？ | **Phase 3 扫码同步**（双端二维码加密传输）|
 | 目标？ | 个人信息保险箱 Android + Windows 双端 |
-| 学到什么？ | PBKDF2 迭代变更需兼容迁移；EncryptedSharedPreferences 卸载即丢失 |
-| 做了什么？ | 文档整理：5 个历史文档归档+合并，项目文档迁移至 docs/project/，README 更新至 v1.1.9 |
+| 学到什么？ | KeyboardListener 替代 Shortcuts 处理 Fluent UI 快捷键冲突；MSIX 打包流程 |
+| 做了什么？ | Windows 端 13 个 Bug 修复 + 深色模式统一 + MSIX 打包支持 |
+| 下一步？ | Phase 3 扫码同步或功能迭代 |
+
+---
+
+## Session: 2026-05-28 (Windows 端 Bug 修复 + MSIX 打包)
+
+### Windows 端 Bug 修复 (13 项)
+- **Esc 快捷键**: `Shortcuts` 被 Fluent UI NavigationView 拦截，改用 `KeyboardListener` + `FocusNode`
+- **Ctrl+N/Ctrl+S**: 主界面新建、编辑页保存快捷键
+- **深色模式统一**: `AppTheme.darkBg` 从 `#0B1120` 改为 `#202020`(Windows标准黑灰)
+- **导航栏背景**: 添加 `navigationPaneTheme` 配置
+- **建议标签深色模式**: `_buildSuggestionChip` 背景色适配
+- **平台图标深色模式**: 亮度阈值 0.2→0.5，深色图标自动变白
+- **文件夹标签**: `_ItemCard` 标题右侧显示 `item.folderName`
+- **快捷填入滑动**: `ListView.separated` 改为 `SingleChildScrollView` + `Row`
+- **平台图标显示**: `TypeIcon` 改为 `PlatformIcon`
+- **新建文件夹输入框**: `SizedBox(height: 36)` 限制高度
+- **详情页/编辑页返回**: 添加 leading 返回按钮
+
+### MSIX 打包
+- 添加 `msix_config` 到 `pubspec.yaml`
+- 生成自签名测试证书
+- 成功打包 `infovault.msix` (18MB)
+
+### 构建产物
+- MSIX: `infovault\build\windows\x64\runner\Release\infovault.msix`
+- 便携版: `infovault\build\windows\x64\runner\Release_v1.2.1+20_Windows_BugFix4\`
+
+---
+
+## Session: 2026-05-28 (Windows 端 bug 修复 + Fluent UI 方案)
+
+### Windows 端 Bug 修复
+- **compute() Isolate 卡死**: `encryption_service.dart` 添加 `Platform.isWindows` 判断，Windows 上跳过 compute() 直接运行 PBKDF2
+- **databaseFactory 未初始化**: `main.dart` 添加 `databaseFactory = databaseFactoryFfi;`
+- **缺少 sqflite 导入**: `database_service.dart` 添加 `import 'package:sqflite/sqflite.dart';`
+- **缺少 sqlite3.dll**: `pubspec.yaml` 添加 `sqlite3_flutter_libs: ^0.5.0`
+
+### Windows 端自动化测试
+- 使用 pywinauto (Windows UI Automation) + pyautogui (坐标点击) 组合方案
+- 成功验证：创建密码、解锁密码
+- 未成功：添加条目（坐标定位不准确）、搜索、设置、锁定/解锁
+- **根因**：Flutter Windows 的 UIA 控件树只暴露窗口框架级控件，内部按钮/输入框不暴露
+
+### Windows 端 Fluent UI 改造方案
+- **方案**: 使用 `fluent_ui` 包，平台分流架构（Android 保持 MaterialApp，Windows 用 FluentApp）
+- **核心改动**: NavigationView 侧边栏、ContentDialog 替代 BottomSheet、TextBox 替代 TextField
+- **详细方案**: docs/project/fluent_ui_plan.md（13步实施计划）
+- **状态**: 方案已确认，待实施
+
+### 清理
+- 删除所有 Windows 测试脚本（test_win_*.py）
+
+---
+
+## Session: 2026-05-28 (Windows Fluent UI Phase B — 完整覆盖)
+
+### 新增（4 个文件）
+- `add_edit_item_screen_win.dart` — ~570 行，5 种类型表单（Fluent TextBox + QuickFillChips + 照片管理 + ComboBox 文件夹选择）
+- `item_detail_screen_win.dart` — 详情页，类型专属字段展示 + 密码遮罩 + 照片网格 + 全屏查看
+- `folder_management_screen_win.dart` — 文件夹列表 + ContentDialog 删除确认
+- `change_password_screen_win.dart` — 旧密码验证 + 新密码设置 + 兼容性提示
+
+### 更新导航引用
+- vault_screen_win → ItemDetailScreenWin + AddEditItemScreenWin
+- search_screen_win → ItemDetailScreenWin
+- settings_screen_win → ChangePasswordScreenWin + FolderManagementScreenWin
+
+### 验证
+- flutter analyze: 0 errors, 0 warnings ✓
+- flutter test: 142/142 passed ✓
+- Windows 端不再依赖任何 Material 页面
+
+---
+
+## Session: 2026-05-28 (Windows Fluent UI Phase A 改造)
+
+### 新增
+- **Windows Fluent UI 改造 Phase A**: 7 新建文件 + 2 修改文件
+  - 架构：Platform.isWindows 分流，FluentApp vs MaterialApp
+  - 新建：app_windows.dart、fluent_theme.dart、main_shell_win.dart、vault_screen_win.dart
+  - 新建：search_screen_win.dart、settings_screen_win.dart、add_item_dialog.dart
+  - 新建：lock_screen_win.dart、create_password_screen_win.dart
+  - 修改：main.dart 平台分流、pubspec.yaml 添加 fluent_ui + system_theme
+- 依赖：fluent_ui ^4.15.1、system_theme ^3.2.0（兼容 Dart 3.10.7）
+- Fluent 组件映射：NavigationView、NavigationPane、ContentDialog、TextBox、ToggleSwitch、InfoBar、RadioGroup
+
+### 验证
+- `flutter analyze`: 0 errors, 0 warnings ✓
+- `flutter test`: 142/142 passed ✓
+
+### 版本
+- v1.1.9+18 → v1.2.0+19
+- CHANGELOG.md、progress.md、README.md 已更新
+
+### Phase B — 完成 (2026-05-28)
+所有 Windows 页面已 Fluent 化，Windows 端不再依赖 Material 组件。
+- flutter_acrylic 亚克力/Mica 窗口效果已集成
+
+### 最终状态
+- **analyze**: 0 errors, 0 warnings
+- **test**: 142/142 passed
+- **Windows 构建**: Release 成功 (30.6MB)
 
 ---
 
@@ -101,6 +204,8 @@
 
 | 版本 | 日期 | 主要变更 |
 |------|------|----------|
+| v1.2.1 | 2026-05-28 | Windows 13 个 Bug 修复、深色模式统一、MSIX 打包支持 |
+| v1.2.0 | 2026-05-28 | Windows Fluent UI 改造 (Phase A+B)、亚克力/Mica 效果 |
 | v1.1.9 | 2026-05-28 | QQ 图标修复、深色模式 chip 适配、SenseNove 清理 |
 | v1.1.8 | 2026-05-28 | PBKDF2 迭代兼容迁移（100k→10k 自动迁移） |
 | v1.1.7 | 2026-05-27 | UI/UX 6 项优化、深色模式全面适配 |

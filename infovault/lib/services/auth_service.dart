@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'encryption_service.dart';
@@ -40,6 +41,7 @@ class AuthService extends ChangeNotifier {
   }
 
   Future<void> setMasterPassword(String password) async {
+    password = password.trim();
     final salt = _encryptionService.generateSalt();
 
     final derivedKey = await _encryptionService.deriveKey(password, salt);
@@ -59,6 +61,7 @@ class AuthService extends ChangeNotifier {
   }
 
   Future<bool> verifyMasterPassword(String password) async {
+    password = password.trim();
     if (isLockedOut) return false;
 
     final storedHash = await _secureStorage.read(key: _hashKey);
@@ -67,47 +70,62 @@ class AuthService extends ChangeNotifier {
 
     final salt = Uint8List.fromList(base64.decode(saltEncoded));
     final storedIterationsStr = await _secureStorage.read(key: _iterationsKey);
-    final storedIterations = storedIterationsStr != null
-        ? int.tryParse(storedIterationsStr) ?? AppConstants.legacyPbkdf2Iterations
-        : AppConstants.legacyPbkdf2Iterations;
-    final currentIterations = AppConstants.pbkdf2Iterations;
-    final needsMigration = storedIterations != currentIterations;
 
-    Uint8List derivedKey;
-    bool match;
+    // When _iterationsKey is missing (e.g. Android Keystore invalidation during
+    // upgrade), try known iteration values. Priority order:
+    //   1. stored value (if _iterationsKey exists)
+    //   2. current (10K) — v1.1.7+ users (performance optimized)
+    //   3. 100K (legacy pre-v1.1.7) — older users
+    final iterationsToTry = _buildMigrationCandidates(storedIterationsStr);
 
-    if (needsMigration) {
-      // Verify with old iterations first
-      derivedKey = await _encryptionService.deriveKeyWithIterations(password, salt, storedIterations);
-      match = base64.encode(derivedKey) == storedHash;
+    for (final candidateIterations in iterationsToTry) {
+      final derivedKey = await _encryptionService.deriveKeyWithIterations(
+          password, salt, candidateIterations);
+      final match =
+          _constantTimeEqual(derivedKey, base64.decode(storedHash));
 
       if (match) {
-        // Migrate: re-derive with new iterations + re-encrypt all data
-        await _migrateIterations(password, salt, derivedKey);
+        if (candidateIterations != AppConstants.pbkdf2Iterations) {
+          await _migrateIterations(password, salt, derivedKey);
+        } else {
+          _failedAttempts = 0;
+          _isUnlocked = true;
+          await _encryptionService.storeMasterKey(derivedKey);
+          await _vaultService?.setEncryptionKey(derivedKey);
+          notifyListeners();
+        }
         return true;
       }
-    } else {
-      derivedKey = await _encryptionService.deriveKey(password, salt);
-      match = base64.encode(derivedKey) == storedHash;
     }
 
-    if (match) {
-      _failedAttempts = 0;
-      _isUnlocked = true;
-      await _encryptionService.storeMasterKey(derivedKey);
-      await _vaultService?.setEncryptionKey(derivedKey);
-      notifyListeners();
-    } else {
-      _failedAttempts++;
-      if (_failedAttempts >= AppConstants.maxFailedAttempts) {
-        _lockedUntil =
-            DateTime.now().add(const Duration(minutes: AppConstants.lockoutDurationMinutes));
-      }
-      notifyListeners();
+    _failedAttempts++;
+    if (_failedAttempts >= AppConstants.maxFailedAttempts) {
+      _lockedUntil =
+          DateTime.now().add(const Duration(minutes: AppConstants.lockoutDurationMinutes));
     }
-
+    notifyListeners();
     await _saveFailedCount();
-    return match;
+    return false;
+  }
+
+  /// Builds the list of iteration counts to try during verification,
+  /// ordered by likelihood.
+  List<int> _buildMigrationCandidates(String? storedIterationsStr) {
+    final current = AppConstants.pbkdf2Iterations;
+    if (storedIterationsStr != null) {
+      final stored = int.tryParse(storedIterationsStr) ?? current;
+      // If stored == current, just try one value.
+      if (stored == current) {
+        return [current];
+      }
+      // Migration needed: try stored (verified), then migrate.
+      return [stored];
+    }
+    // _iterationsKey was lost — try all known values.
+    return [
+      10000,          // target (current)
+      100000,         // pre-v1.1.7 legacy
+    ];
   }
 
   Future<void> _migrateIterations(String password, Uint8List salt, Uint8List oldKey) async {
@@ -129,6 +147,8 @@ class AuthService extends ChangeNotifier {
   }
 
   Future<bool> changePassword(String oldPassword, String newPassword) async {
+    oldPassword = oldPassword.trim();
+    newPassword = newPassword.trim();
     final oldKey = _vaultService?.encryptionKey;
     if (oldKey == null) return false;
 
@@ -160,5 +180,15 @@ class AuthService extends ChangeNotifier {
   Future<void> _saveFailedCount() async {
     await _secureStorage.write(
         key: _failedCountKey, value: _failedAttempts.toString());
+  }
+
+  /// Constant-time comparison to prevent timing side-channel attacks.
+  static bool _constantTimeEqual(Uint8List a, Uint8List b) {
+    if (a.length != b.length) return false;
+    var result = 0;
+    for (var i = 0; i < a.length; i++) {
+      result |= a[i] ^ b[i];
+    }
+    return result == 0;
   }
 }

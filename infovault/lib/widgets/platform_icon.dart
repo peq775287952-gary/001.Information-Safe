@@ -101,13 +101,13 @@ class PlatformIcon extends StatelessWidget {
 
   Widget _iconContainer(IconData icon, Color iconColor) {
     final isDark = WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark;
-    final effectiveColor = isDark && iconColor.computeLuminance() < 0.2
+    final effectiveColor = isDark && iconColor.computeLuminance() < 0.5
         ? Colors.white
         : iconColor;
     return Container(
       width: size, height: size,
       decoration: BoxDecoration(
-        color: iconColor.withAlpha(isDark ? 50 : 25),
+        color: iconColor.withAlpha(isDark ? 60 : 25),
         borderRadius: BorderRadius.circular(size / 3),
       ),
       child: Icon(icon, size: size * 0.55, color: effectiveColor),

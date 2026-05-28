@@ -24,9 +24,9 @@
 - 浏览器插件/自动填充
 
 ## Current Phase
-Phase 2: Windows 桌面版 ✅（v1.1.9 — QQ 图标修复 + 深色模式适配 + PBKDF2 迁移 + 142 测试全通过）
+Phase 2: Windows 桌面版 ✅（v1.2.1 — Fluent UI 完全体 + Bug 修复 + MSIX 打包 + 142 测试全通过）
 
-## 当前版本：v1.1.9+18
+## 当前版本：v1.2.1+20
 
 ### 已完成
 - 28+ Dart 源文件 + 142 tests (0 failures)
@@ -46,6 +46,7 @@ Phase 2: Windows 桌面版 ✅（v1.1.9 — QQ 图标修复 + 深色模式适配
 - 自定义应用图标 + 应用名"信息保险箱"
 - 版本号系统：界面 X.Y.Z，构建自动递增
 - **Windows 桌面版**: sqflite FFI + 构建脚本
+- **MSIX 打包**: 支持生成 .msix 安装包，自签名证书可分发
 
 ## Phases
 

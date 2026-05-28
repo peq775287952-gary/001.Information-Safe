@@ -1,7 +1,7 @@
 name: infovault
 description: "信息保险箱 - A personal information vault app."
 publish_to: 'none'
-version: 1.1.9+18
+version: 1.2.1+20
 
 environment:
   sdk: ^3.7.0
@@ -16,6 +16,7 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   sqflite: ^2.4.2
   sqflite_common_ffi: ^2.3.4+4
+  sqlite3_flutter_libs: ^0.5.0
   path_provider: ^2.1.5
   path: ^1.9.1
   image_picker: ^1.1.2
@@ -27,6 +28,9 @@ dependencies:
   file_picker: ^11.0.2
   pointycastle: ^3.9.1
   package_info_plus: ^8.1.0
+  fluent_ui: ^4.15.1
+  system_theme: ^3.2.0
+  flutter_acrylic: ^1.1.4
 
 dev_dependencies:
   flutter_test:
@@ -37,6 +41,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.1
   mockito: ^5.4.5
   build_runner: ^2.4.14
+  msix: ^3.16.13
 
 flutter:
   uses-material-design: true
@@ -48,3 +53,14 @@ flutter_launcher_icons:
   image_path: "../icon.png"
   adaptive_icon_background: "#1E293B"
   adaptive_icon_foreground: "../icon.png"
+
+msix_config:
+  display_name: 信息保险箱
+  publisher_display_name: N7
+  publisher: CN=N7, O=N7, C=CN
+  identity_name: com.n7.infovault
+  msix_version: 1.2.1.0
+  logo_path: windows/runner/resources/app_icon.png
+  capabilities: internetClient
+  languages: zh-cn
+  execution_level: asInvoker

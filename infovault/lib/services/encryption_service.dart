@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io' show Platform;
 import 'dart:math';
 
 import 'package:encrypt/encrypt.dart' as encrypt_lib;
@@ -28,14 +29,23 @@ class EncryptionService {
   }
 
   /// Derives a 256-bit key from [password] and [salt] using PBKDF2-HMAC-SHA256.
-  /// Runs in a separate isolate to avoid blocking the UI thread.
+  /// On Android/iOS, runs in a separate isolate to avoid blocking the UI thread.
+  /// On Windows, runs on main isolate to avoid known compute() hang issues.
   Future<Uint8List> deriveKey(String password, Uint8List salt) async {
-    return compute(_deriveKeyInIsolate, _DeriveKeyParams(password, salt, AppConstants.pbkdf2Iterations));
+    final params = _DeriveKeyParams(password, salt, AppConstants.pbkdf2Iterations);
+    if (Platform.isWindows) {
+      return _deriveKeyInIsolate(params);
+    }
+    return compute(_deriveKeyInIsolate, params);
   }
 
   /// Derives a key with a specific [iterations] count (used for migration).
   Future<Uint8List> deriveKeyWithIterations(String password, Uint8List salt, int iterations) async {
-    return compute(_deriveKeyInIsolate, _DeriveKeyParams(password, salt, iterations));
+    final params = _DeriveKeyParams(password, salt, iterations);
+    if (Platform.isWindows) {
+      return _deriveKeyInIsolate(params);
+    }
+    return compute(_deriveKeyInIsolate, params);
   }
 
   /// Isolate function for PBKDF2 key derivation.

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../models/item_type.dart';
@@ -22,7 +23,8 @@ class QuickFillChips extends StatelessWidget {
     final options = _options;
     if (options.isEmpty) return const SizedBox.shrink();
 
-    final isLight = Theme.of(context).brightness == Brightness.light;
+    final brightness = fluent.FluentTheme.of(context).brightness;
+    final isLight = brightness == Brightness.light;
     final mutedColor = isLight ? AppTheme.lightTextSecondary : AppTheme.darkTextSecondary;
 
     return Padding(
@@ -36,49 +38,55 @@ class QuickFillChips extends StatelessWidget {
                 color: mutedColor,
               )),
           const SizedBox(height: 6),
-          SizedBox(
-            height: 34,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: options.length,
-              separatorBuilder: (_, __) => const SizedBox(width: 6),
-              itemBuilder: (context, index) {
-                final opt = options[index];
-                final isSelected = currentValue == opt.name;
-                return GestureDetector(
-                  onTap: () => onSelected(opt.name),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: isSelected
-                          ? AppTheme.surfaceBlue
-                          : Theme.of(context).colorScheme.surfaceContainerHighest,
-                      borderRadius: BorderRadius.circular(20),
-                      border: isSelected
-                          ? Border.all(color: AppTheme.brandBlue.withAlpha(60))
-                          : null,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (opt.svgAsset != null)
-                          SvgPicture.asset(opt.svgAsset!, width: 14, height: 14,
-                            colorFilter: ColorFilter.mode(opt.color, BlendMode.srcIn))
-                        else if (opt.iconData != null)
-                          Icon(opt.iconData, size: 14, color: opt.color),
-                        const SizedBox(width: 4),
-                        Text(opt.name, style: TextStyle(
-                          fontSize: 13, fontWeight: FontWeight.w500,
-                          color: isSelected ? AppTheme.brandBlue : mutedColor,
-                        )),
-                      ],
-                    ),
-                  ),
-                );
-              },
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                for (int i = 0; i < options.length; i++) ...[
+                  if (i > 0) const SizedBox(width: 6),
+                  _buildChip(options[i], isLight, mutedColor),
+                ],
+              ],
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildChip(_QuickOption opt, bool isLight, Color mutedColor) {
+    final isSelected = currentValue == opt.name;
+    final iconColor = !isLight && opt.color.computeLuminance() < 0.3
+        ? Colors.white
+        : opt.color;
+    return GestureDetector(
+      onTap: () => onSelected(opt.name),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? AppTheme.surfaceBlue
+              : (isLight ? const Color(0xFFF1F5F9) : const Color(0xFF2D2D2D)),
+          borderRadius: BorderRadius.circular(20),
+          border: isSelected
+              ? Border.all(color: AppTheme.brandBlue.withAlpha(60))
+              : null,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (opt.svgAsset != null)
+              SvgPicture.asset(opt.svgAsset!, width: 14, height: 14,
+                colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn))
+            else if (opt.iconData != null)
+              Icon(opt.iconData, size: 14, color: iconColor),
+            const SizedBox(width: 4),
+            Text(opt.name, style: TextStyle(
+              fontSize: 13, fontWeight: FontWeight.w500,
+              color: isSelected ? AppTheme.brandBlue : mutedColor,
+            )),
+          ],
+        ),
       ),
     );
   }

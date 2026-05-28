@@ -1,0 +1,2886 @@
+FluentIcons class - fluent_ui library - Dart API
+https://pub.dev/documentation/fluent_ui/latest/fluent_ui/FluentIcons-class.html
+
+<!DOCTYPE html>
+FluentIcons class - fluent_ui library - Dart API
+
+menu
+fluent_ui package
+
+documentation
+
+fluent_ui.dart
+
+FluentIcons class
+
+FluentIcons class
+dark_modelight_mode
+
+FluentIcons class 
+
+Properties
+
+hashCode
+→ int
+
+The hash code for this object.
+
+no setterinherited
+
+runtimeType
+→ Type
+
+A representation of the runtime type of the object.
+
+no setterinherited
+
+Methods
+
+noSuchMethod(Invocation invocation)
+→ dynamic
+
+Invoked when a nonexistent method or property is accessed.
+
+inherited
+
+toString()
+→ String
+
+A string representation of this object.
+
+inherited
+
+Operators
+
+operator ==(Object other)
+→ bool
+
+The equality operator.
+
+inherited
+
+Constants
+
+a_a_d_logo
+→ const IconData
+
+a_t_p_logo
+→ const IconData
+
+accept
+→ const IconData
+
+accept_medium
+→ const IconData
+
+access_logo
+→ const IconData
+
+accessibilty_checker
+→ const IconData
+
+account_activity
+→ const IconData
+
+account_browser
+→ const IconData
+
+account_management
+→ const IconData
+
+accounts
+→ const IconData
+
+action_center
+→ const IconData
+
+activate_orders
+→ const IconData
+
+activity_feed
+→ const IconData
+
+add
+→ const IconData
+
+add_bookmark
+→ const IconData
+
+add_connection
+→ const IconData
+
+add_event
+→ const IconData
+
+add_favorite
+→ const IconData
+
+add_favorite_fill
+→ const IconData
+
+add_field
+→ const IconData
+
+add_friend
+→ const IconData
+
+add_group
+→ const IconData
+
+add_home
+→ const IconData
+
+add_in
+→ const IconData
+
+add_link
+→ const IconData
+
+add_medium
+→ const IconData
+
+add_multiple
+→ const IconData
+
+add_notes
+→ const IconData
+
+add_online_meeting
+→ const IconData
+
+add_phone
+→ const IconData
+
+add_reaction
+→ const IconData
+
+add_space_after
+→ const IconData
+
+add_space_before
+→ const IconData
+
+add_table
+→ const IconData
+
+add_to
+→ const IconData
+
+add_to_shopping_list
+→ const IconData
+
+add_work
+→ const IconData
+
+admin
+→ const IconData
+
+admin_a_logo32
+→ const IconData
+
+admin_a_logo_fill32
+→ const IconData
+
+admin_a_logo_inverse32
+→ const IconData
+
+admin_c_logo_inverse32
+→ const IconData
+
+admin_d_logo_inverse32
+→ const IconData
+
+admin_e_logo_inverse32
+→ const IconData
+
+admin_l_logo_inverse32
+→ const IconData
+
+admin_m_logo_inverse32
+→ const IconData
+
+admin_o_logo_inverse32
+→ const IconData
+
+admin_p_logo_inverse32
+→ const IconData
+
+admin_s_logo_inverse32
+→ const IconData
+
+admin_y_logo_inverse32
+→ const IconData
+
+air_tickets
+→ const IconData
+
+airplane
+→ const IconData
+
+airplane_solid
+→ const IconData
+
+alarm_clock
+→ const IconData
+
+album
+→ const IconData
+
+album_remove
+→ const IconData
+
+alert_settings
+→ const IconData
+
+alert_solid
+→ const IconData
+
+align_center
+→ const IconData
+
+align_horizontal_center
+→ const IconData
+
+align_horizontal_left
+→ const IconData
+
+align_horizontal_right
+→ const IconData
+
+align_justify
+→ const IconData
+
+align_left
+→ const IconData
+
+align_right
+→ const IconData
+
+align_vertical_bottom
+→ const IconData
+
+align_vertical_center
+→ const IconData
+
+align_vertical_top
+→ const IconData
+
+all_apps
+→ const IconData
+
+all_apps_mirrored
+→ const IconData
+
+all_currency
+→ const IconData
+
+allIcons
+→ const Map<String, IconData>
+
+alt_text
+→ const IconData
+
+analytics_logo
+→ const IconData
+
+analytics_query
+→ const IconData
+
+analytics_report
+→ const IconData
+
+analytics_view
+→ const IconData
+
+anchor_lock
+→ const IconData
+
+annotation
+→ const IconData
+
+app_icon_default
+→ const IconData
+
+app_icon_default_add
+→ const IconData
+
+app_icon_default_edit
+→ const IconData
+
+app_icon_default_list
+→ const IconData
+
+app_icon_secure
+→ const IconData
+
+apps_content
+→ const IconData
+
+archive
+→ const IconData
+
+archive_undo
+→ const IconData
+
+area_chart
+→ const IconData
+
+arrange_bring_forward
+→ const IconData
+
+arrange_bring_to_front
+→ const IconData
+
+arrange_by_from
+→ const IconData
+
+arrange_send_backward
+→ const IconData
+
+arrange_send_to_back
+→ const IconData
+
+arrivals
+→ const IconData
+
+arrow_down_right8
+→ const IconData
+
+arrow_down_right_mirrored8
+→ const IconData
+
+arrow_tall_down_left
+→ const IconData
+
+arrow_tall_down_right
+→ const IconData
+
+arrow_tall_up_left
+→ const IconData
+
+arrow_tall_up_right
+→ const IconData
+
+arrow_up_right
+→ const IconData
+
+arrow_up_right8
+→ const IconData
+
+arrow_up_right_mirrored8
+→ const IconData
+
+articles
+→ const IconData
+
+ascending
+→ const IconData
+
+aspect_ratio
+→ const IconData
+
+assessment_group
+→ const IconData
+
+assessment_group_template
+→ const IconData
+
+asset_library
+→ const IconData
+
+assign
+→ const IconData
+
+assign_policy
+→ const IconData
+
+asterisk
+→ const IconData
+
+asterisk_solid
+→ const IconData
+
+attach
+→ const IconData
+
+australian_rules
+→ const IconData
+
+authenticator_app
+→ const IconData
+
+auto_deploy_settings
+→ const IconData
+
+auto_enhance_off
+→ const IconData
+
+auto_enhance_on
+→ const IconData
+
+auto_fill_template
+→ const IconData
+
+auto_fit_contents
+→ const IconData
+
+auto_fit_window
+→ const IconData
+
+auto_height
+→ const IconData
+
+auto_racing
+→ const IconData
+
+automate_flow
+→ const IconData
+
+away_status
+→ const IconData
+
+azure_a_p_i_management
+→ const IconData
+
+azure_data_explorer
+→ const IconData
+
+azure_icon
+→ const IconData
+
+azure_key_vault
+→ const IconData
+
+azure_service_endpoint
+→ const IconData
+
+b_i_dashboard
+→ const IconData
+
+back
+→ const IconData
+
+back_to_window
+→ const IconData
+
+background_color
+→ const IconData
+
+backlog
+→ const IconData
+
+backlog_board
+→ const IconData
+
+backlog_list
+→ const IconData
+
+badge
+→ const IconData
+
+balloons
+→ const IconData
+
+bank
+→ const IconData
+
+bank_solid
+→ const IconData
+
+bar_chart4
+→ const IconData
+
+bar_chart_horizontal
+→ const IconData
+
+bar_chart_vertical
+→ const IconData
+
+bar_chart_vertical_edit
+→ const IconData
+
+bar_chart_vertical_fill
+→ const IconData
+
+bar_chart_vertical_filter
+→ const IconData
+
+bar_chart_vertical_filter_solid
+→ const IconData
+
+baseball
+→ const IconData
+
+beer_mug
+→ const IconData
+
+bidi_ltr
+→ const IconData
+
+bidi_rtl
+→ const IconData
+
+bill
+→ const IconData
+
+bing_logo
+→ const IconData
+
+birthday_cake
+→ const IconData
+
+blob_storage
+→ const IconData
+
+block_contact
+→ const IconData
+
+blocked
+→ const IconData
+
+blocked2
+→ const IconData
+
+blocked2_solid
+→ const IconData
+
+blocked12
+→ const IconData
+
+blocked_site
+→ const IconData
+
+blocked_site_solid12
+→ const IconData
+
+blocked_solid
+→ const IconData
+
+blog
+→ const IconData
+
+blowing_snow
+→ const IconData
+
+bluetooth
+→ const IconData
+
+blur
+→ const IconData
+
+boards
+→ const IconData
+
+bold
+→ const IconData
+
+bold_bulgarian
+→ const IconData
+
+bold_f
+→ const IconData
+
+bold_g
+→ const IconData
+
+bold_k
+→ const IconData
+
+bold_kazakh
+→ const IconData
+
+bold_korean
+→ const IconData
+
+bold_n
+→ const IconData
+
+bold_p
+→ const IconData
+
+bold_russion
+→ const IconData
+
+bold_serbian
+→ const IconData
+
+bold_t
+→ const IconData
+
+book_answers
+→ const IconData
+
+bookings_logo
+→ const IconData
+
+bookmark_report
+→ const IconData
+
+bookmarks
+→ const IconData
+
+bookmarks_mirrored
+→ const IconData
+
+boolean_data
+→ const IconData
+
+border_all
+→ const IconData
+
+border_dash
+→ const IconData
+
+border_dot
+→ const IconData
+
+border_inside
+→ const IconData
+
+border_inside_horizontal
+→ const IconData
+
+border_inside_vertical
+→ const IconData
+
+border_none
+→ const IconData
+
+box_addition_solid
+→ const IconData
+
+box_checkmark_solid
+→ const IconData
+
+box_multiply_solid
+→ const IconData
+
+box_play_solid
+→ const IconData
+
+box_subtract_solid
+→ const IconData
+
+branch_commit
+→ const IconData
+
+branch_compare
+→ const IconData
+
+branch_fork
+→ const IconData
+
+branch_fork2
+→ const IconData
+
+branch_locked
+→ const IconData
+
+branch_merge
+→ const IconData
+
+branch_pull_request
+→ const IconData
+
+branch_search
+→ const IconData
+
+branch_shelveset
+→ const IconData
+
+breadcrumb
+→ const IconData
+
+breakfast
+→ const IconData
+
+brightness
+→ const IconData
+
+broom
+→ const IconData
+
+browser_screen_shot
+→ const IconData
+
+browser_tab
+→ const IconData
+
+browser_tab_screenshot
+→ const IconData
+
+brunch
+→ const IconData
+
+brush
+→ const IconData
+
+bucket_color
+→ const IconData
+
+bucket_color_fill
+→ const IconData
+
+buffer_time_after
+→ const IconData
+
+buffer_time_before
+→ const IconData
+
+buffer_time_both
+→ const IconData
+
+bug
+→ const IconData
+
+bug_action
+→ const IconData
+
+bug_block
+→ const IconData
+
+bug_solid
+→ const IconData
+
+bug_sync
+→ const IconData
+
+bug_warning
+→ const IconData
+
+build
+→ const IconData
+
+build_definition
+→ const IconData
+
+build_issue
+→ const IconData
+
+build_queue
+→ const IconData
+
+build_queue_new
+→ const IconData
+
+bulk_page_block
+→ const IconData
+
+bulk_upload
+→ const IconData
+
+bulleted_list
+→ const IconData
+
+bulleted_list2
+→ const IconData
+
+bulleted_list2_mirrored
+→ const IconData
+
+bulleted_list_bullet
+→ const IconData
+
+bulleted_list_bullet_mirrored
+→ const IconData
+
+bulleted_list_mirrored
+→ const IconData
+
+bulleted_list_text
+→ const IconData
+
+bulleted_list_text_mirrored
+→ const IconData
+
+bulleted_tree_list
+→ const IconData
+
+bullseye
+→ const IconData
+
+bullseye_target
+→ const IconData
+
+bullseye_target_add
+→ const IconData
+
+bullseye_target_delete
+→ const IconData
+
+bullseye_target_edit
+→ const IconData
+
+bus
+→ const IconData
+
+bus_solid
+→ const IconData
+
+business_card
+→ const IconData
+
+business_center_logo
+→ const IconData
+
+business_hours_sign
+→ const IconData
+
+business_rule
+→ const IconData
+
+button_control
+→ const IconData
+
+c_c_solid
+→ const IconData
+
+c_plus_plus
+→ const IconData
+
+c_plus_plus_language
+→ const IconData
+
+c_r_m_lead
+→ const IconData
+
+c_r_m_processes
+→ const IconData
+
+c_r_m_report
+→ const IconData
+
+c_r_m_resource_optimization_app32
+→ const IconData
+
+c_r_m_services
+→ const IconData
+
+c_sharp
+→ const IconData
+
+c_sharp_language
+→ const IconData
+
+cafe
+→ const IconData
+
+cake
+→ const IconData
+
+calculated_table
+→ const IconData
+
+calculator
+→ const IconData
+
+calculator_addition
+→ const IconData
+
+calculator_delta
+→ const IconData
+
+calculator_equal_to
+→ const IconData
+
+calculator_group
+→ const IconData
+
+calculator_multiply
+→ const IconData
+
+calculator_not_equal_to
+→ const IconData
+
+calculator_percentage
+→ const IconData
+
+calculator_subtract
+→ const IconData
+
+calendar
+→ const IconData
+
+calendar_agenda
+→ const IconData
+
+calendar_day
+→ const IconData
+
+calendar_mirrored
+→ const IconData
+
+calendar_reply
+→ const IconData
+
+calendar_settings
+→ const IconData
+
+calendar_settings_mirrored
+→ const IconData
+
+calendar_week
+→ const IconData
+
+calendar_work_week
+→ const IconData
+
+calendar_year
+→ const IconData
+
+calories
+→ const IconData
+
+calories_add
+→ const IconData
+
+camera
+→ const IconData
+
+campaign_template
+→ const IconData
+
+cancel
+→ const IconData
+
+canned_chat
+→ const IconData
+
+canvas_app_template32
+→ const IconData
+
+car
+→ const IconData
+
+care_activity
+→ const IconData
+
+care_plan
+→ const IconData
+
+care_plan_template
+→ const IconData
+
+caret_bottom_left_center8
+→ const IconData
+
+caret_bottom_left_solid8
+→ const IconData
+
+caret_bottom_right_center8
+→ const IconData
+
+caret_bottom_right_solid8
+→ const IconData
+
+caret_down8
+→ const IconData
+
+caret_down_solid8
+→ const IconData
+
+caret_hollow
+→ const IconData
+
+caret_hollow_mirrored
+→ const IconData
+
+caret_left8
+→ const IconData
+
+caret_left_solid8
+→ const IconData
+
+caret_right
+→ const IconData
+
+caret_right8
+→ const IconData
+
+caret_right_solid8
+→ const IconData
+
+caret_solid
+→ const IconData
+
+caret_solid16
+→ const IconData
+
+caret_solid_alt
+→ const IconData
+
+caret_solid_down
+→ const IconData
+
+caret_solid_left
+→ const IconData
+
+caret_solid_mirrored
+→ const IconData
+
+caret_solid_right
+→ const IconData
+
+caret_solid_up
+→ const IconData
+
+caret_top_left_center8
+→ const IconData
+
+caret_top_left_solid8
+→ const IconData
+
+caret_top_right_center8
+→ const IconData
+
+caret_top_right_solid8
+→ const IconData
+
+caret_up8
+→ const IconData
+
+caret_up_solid8
+→ const IconData
+
+cat
+→ const IconData
+
+category_classification
+→ const IconData
+
+cc
+→ const IconData
+
+cell_phone
+→ const IconData
+
+cell_split_vertical
+→ const IconData
+
+certificate
+→ const IconData
+
+certified_database
+→ const IconData
+
+change_entitlements
+→ const IconData
+
+chart
+→ const IconData
+
+chart_series
+→ const IconData
+
+chart_template
+→ const IconData
+
+chart_x_angle
+→ const IconData
+
+chart_y_angle
+→ const IconData
+
+charticulator_arrange_polar
+→ const IconData
+
+charticulator_arrange_polar_angles
+→ const IconData
+
+charticulator_band
+→ const IconData
+
+charticulator_guide_coordinator
+→ const IconData
+
+charticulator_guide_x
+→ const IconData
+
+charticulator_guide_y
+→ const IconData
+
+charticulator_legend
+→ const IconData
+
+charticulator_line
+→ const IconData
+
+charticulator_line_style_dashed
+→ const IconData
+
+charticulator_line_style_dotted
+→ const IconData
+
+charticulator_linking_data
+→ const IconData
+
+charticulator_linking_sequence
+→ const IconData
+
+charticulator_order_column
+→ const IconData
+
+charticulator_order_row
+→ const IconData
+
+charticulator_plot_cartesian
+→ const IconData
+
+charticulator_plot_curve
+→ const IconData
+
+charticulator_polar_coordinates
+→ const IconData
+
+charticulator_spiral
+→ const IconData
+
+charticulator_stack_radial
+→ const IconData
+
+charticulator_stack_y
+→ const IconData
+
+chat
+→ const IconData
+
+chat_bot
+→ const IconData
+
+chat_invite_friend
+→ const IconData
+
+chat_settings
+→ const IconData
+
+chat_solid
+→ const IconData
+
+check_list
+→ const IconData
+
+check_list_check
+→ const IconData
+
+check_list_check_mirrored
+→ const IconData
+
+check_list_text
+→ const IconData
+
+check_list_text_mirrored
+→ const IconData
+
+check_mark
+→ const IconData
+
+checkbox
+→ const IconData
+
+checkbox_composite
+→ const IconData
+
+checkbox_composite_reversed
+→ const IconData
+
+checkbox_fill
+→ const IconData
+
+checkbox_indeterminate
+→ const IconData
+
+checkbox_indeterminate_combo
+→ const IconData
+
+checked_out_by_other12
+→ const IconData
+
+checked_out_by_you12
+→ const IconData
+
+chevron_down
+→ const IconData
+
+chevron_down_end
+→ const IconData
+
+chevron_down_end6
+→ const IconData
+
+chevron_down_med
+→ const IconData
+
+chevron_down_small
+→ const IconData
+
+chevron_fold10
+→ const IconData
+
+chevron_left
+→ const IconData
+
+chevron_left_end6
+→ const IconData
+
+chevron_left_med
+→ const IconData
+
+chevron_left_small
+→ const IconData
+
+chevron_right
+→ const IconData
+
+chevron_right_end6
+→ const IconData
+
+chevron_right_med
+→ const IconData
+
+chevron_right_small
+→ const IconData
+
+chevron_unfold10
+→ const IconData
+
+chevron_up
+→ const IconData
+
+chevron_up_end
+→ const IconData
+
+chevron_up_end6
+→ const IconData
+
+chevron_up_med
+→ const IconData
+
+chevron_up_small
+→ const IconData
+
+childof
+→ const IconData
+
+choice_column
+→ const IconData
+
+chopsticks
+→ const IconData
+
+chrome_back
+→ const IconData
+
+chrome_back_mirrored
+→ const IconData
+
+chrome_close
+→ const IconData
+
+chrome_full_screen
+→ const IconData
+
+chrome_minimize
+→ const IconData
+
+chrome_restore
+→ const IconData
+
+circle_addition
+→ const IconData
+
+circle_addition_solid
+→ const IconData
+
+circle_dollar
+→ const IconData
+
+circle_fill
+→ const IconData
+
+circle_half_full
+→ const IconData
+
+circle_pause
+→ const IconData
+
+circle_pause_solid
+→ const IconData
+
+circle_plus
+→ const IconData
+
+circle_ring
+→ const IconData
+
+circle_shape
+→ const IconData
+
+circle_shape_solid
+→ const IconData
+
+circle_stop
+→ const IconData
+
+circle_stop_solid
+→ const IconData
+
+city_next
+→ const IconData
+
+city_next2
+→ const IconData
+
+class_notebook_logo16
+→ const IconData
+
+class_notebook_logo32
+→ const IconData
+
+class_notebook_logo_fill16
+→ const IconData
+
+class_notebook_logo_fill32
+→ const IconData
+
+class_notebook_logo_inverse
+→ const IconData
+
+class_notebook_logo_inverse16
+→ const IconData
+
+class_notebook_logo_inverse32
+→ const IconData
+
+classroom_logo
+→ const IconData
+
+clear
+→ const IconData
+
+clear_filter
+→ const IconData
+
+clear_formatting
+→ const IconData
+
+clear_formatting_a
+→ const IconData
+
+clear_formatting_eraser
+→ const IconData
+
+clear_night
+→ const IconData
+
+clear_selection
+→ const IconData
+
+clear_selection_mirrored
+→ const IconData
+
+clicked
+→ const IconData
+
+clinical_impression
+→ const IconData
+
+clipboard_list
+→ const IconData
+
+clipboard_list_add
+→ const IconData
+
+clipboard_list_mirrored
+→ const IconData
+
+clipboard_list_question
+→ const IconData
+
+clipboard_list_reply
+→ const IconData
+
+clipboard_solid
+→ const IconData
+
+clock
+→ const IconData
+
+clone_to_desktop
+→ const IconData
+
+close_pane
+→ const IconData
+
+close_pane_mirrored
+→ const IconData
+
+closed_caption
+→ const IconData
+
+cloud
+→ const IconData
+
+cloud_add
+→ const IconData
+
+cloud_download
+→ const IconData
+
+cloud_edit
+→ const IconData
+
+cloud_flow
+→ const IconData
+
+cloud_import_export
+→ const IconData
+
+cloud_link
+→ const IconData
+
+cloud_not_synced
+→ const IconData
+
+cloud_printer
+→ const IconData
+
+cloud_search
+→ const IconData
+
+cloud_secure
+→ const IconData
+
+cloud_upload
+→ const IconData
+
+cloud_weather
+→ const IconData
+
+cloudy
+→ const IconData
+
+cocktails
+→ const IconData
+
+code
+→ const IconData
+
+code_edit
+→ const IconData
+
+coffee
+→ const IconData
+
+coffee_script
+→ const IconData
+
+collapse_all
+→ const IconData
+
+collapse_content
+→ const IconData
+
+collapse_content_single
+→ const IconData
+
+collapse_menu
+→ const IconData
+
+college_football
+→ const IconData
+
+college_hoops
+→ const IconData
+
+color
+→ const IconData
+
+color_solid
+→ const IconData
+
+column
+→ const IconData
+
+column_function
+→ const IconData
+
+column_left_two_thirds
+→ const IconData
+
+column_left_two_thirds_edit
+→ const IconData
+
+column_options
+→ const IconData
+
+column_question
+→ const IconData
+
+column_question_mirrored
+→ const IconData
+
+column_right_two_thirds
+→ const IconData
+
+column_right_two_thirds_edit
+→ const IconData
+
+column_sigma
+→ const IconData
+
+column_vertical_section
+→ const IconData
+
+column_vertical_section_edit
+→ const IconData
+
+combine
+→ const IconData
+
+combobox
+→ const IconData
+
+command_prompt
+→ const IconData
+
+comment
+→ const IconData
+
+comment_active
+→ const IconData
+
+comment_add
+→ const IconData
+
+comment_next
+→ const IconData
+
+comment_previous
+→ const IconData
+
+comment_solid
+→ const IconData
+
+comment_urgent
+→ const IconData
+
+commitments
+→ const IconData
+
+common_data_service_c_d_s
+→ const IconData
+
+communication_details
+→ const IconData
+
+communication_details_mirrored
+→ const IconData
+
+communications
+→ const IconData
+
+company_directory
+→ const IconData
+
+company_directory_mirrored
+→ const IconData
+
+compare
+→ const IconData
+
+compare_uneven
+→ const IconData
+
+compass_n_w
+→ const IconData
+
+completed
+→ const IconData
+
+completed12
+→ const IconData
+
+completed_solid
+→ const IconData
+
+compliance_audit
+→ const IconData
+
+configuration_solid
+→ const IconData
+
+confirm_event
+→ const IconData
+
+connect_contacts
+→ const IconData
+
+connect_virtual_machine
+→ const IconData
+
+construction_cone
+→ const IconData
+
+construction_cone_solid
+→ const IconData
+
+contact
+→ const IconData
+
+contact_card
+→ const IconData
+
+contact_card_settings
+→ const IconData
+
+contact_card_settings_mirrored
+→ const IconData
+
+contact_heart
+→ const IconData
+
+contact_info
+→ const IconData
+
+contact_info_mirrored
+→ const IconData
+
+contact_link
+→ const IconData
+
+contact_list
+→ const IconData
+
+contact_lock
+→ const IconData
+
+content_feed
+→ const IconData
+
+content_settings
+→ const IconData
+
+content_understanding_app
+→ const IconData
+
+context_menu
+→ const IconData
+
+contrast
+→ const IconData
+
+copy
+→ const IconData
+
+copy_edit
+→ const IconData
+
+cortana_logo_beckon_inner
+→ const IconData
+
+cortana_logo_beckon_outer
+→ const IconData
+
+cortana_logo_inner
+→ const IconData
+
+cortana_logo_outer
+→ const IconData
+
+cortana_logo_ready_inner
+→ const IconData
+
+cortana_logo_ready_outer
+→ const IconData
+
+cost_contral_ledger_admin
+→ const IconData
+
+cost_control
+→ const IconData
+
+cotton
+→ const IconData
+
+count
+→ const IconData
+
+coupon
+→ const IconData
+
+create_mail_rule
+→ const IconData
+
+credit_card_bill
+→ const IconData
+
+cricket
+→ const IconData
+
+critical_error_solid
+→ const IconData
+
+crop
+→ const IconData
+
+crown
+→ const IconData
+
+crown_solid
+→ const IconData
+
+css
+→ const IconData
+
+ctrl_button
+→ const IconData
+
+cube_shape
+→ const IconData
+
+cube_shape_solid
+→ const IconData
+
+currency
+→ const IconData
+
+custom_activity
+→ const IconData
+
+custom_entity
+→ const IconData
+
+custom_list
+→ const IconData
+
+custom_list_mirrored
+→ const IconData
+
+customer_assets
+→ const IconData
+
+customize_toolbar
+→ const IconData
+
+cut
+→ const IconData
+
+cycling
+→ const IconData
+
+d365_business_central
+→ const IconData
+
+d365_core_h_r
+→ const IconData
+
+d365_customer_insights
+→ const IconData
+
+d365_customer_voice_app
+→ const IconData
+
+d365_project_operations
+→ const IconData
+
+d365_talent_insight
+→ const IconData
+
+d365_talent_learn
+→ const IconData
+
+dashboard_add
+→ const IconData
+
+data_connection_library
+→ const IconData
+
+data_enrichment
+→ const IconData
+
+data_flow
+→ const IconData
+
+data_management_settings
+→ const IconData
+
+database
+→ const IconData
+
+database_activity
+→ const IconData
+
+database_block
+→ const IconData
+
+database_refresh
+→ const IconData
+
+database_source
+→ const IconData
+
+database_swap
+→ const IconData
+
+database_sync
+→ const IconData
+
+database_view
+→ const IconData
+
+dataflows
+→ const IconData
+
+dataflows_link
+→ const IconData
+
+dataverse
+→ const IconData
+
+date_time
+→ const IconData
+
+date_time2
+→ const IconData
+
+date_time12
+→ const IconData
+
+date_time_mirrored
+→ const IconData
+
+deactivate_orders
+→ const IconData
+
+decimals
+→ const IconData
+
+decision_solid
+→ const IconData
+
+decline_call
+→ const IconData
+
+decrease_indent
+→ const IconData
+
+decrease_indent_arrow
+→ const IconData
+
+decrease_indent_arrow_mirrored
+→ const IconData
+
+decrease_indent_mirrored
+→ const IconData
+
+decrease_indent_text
+→ const IconData
+
+decrease_indent_text_mirrored
+→ const IconData
+
+default_ratio
+→ const IconData
+
+default_settings
+→ const IconData
+
+defect_solid
+→ const IconData
+
+defender_app
+→ const IconData
+
+defender_badge12
+→ const IconData
+
+defender_t_v_m
+→ const IconData
+
+delete
+→ const IconData
+
+delete_columns
+→ const IconData
+
+delete_rows
+→ const IconData
+
+delete_rows_mirrored
+→ const IconData
+
+delete_table
+→ const IconData
+
+delivery_truck
+→ const IconData
+
+delve_analytics
+→ const IconData
+
+delve_analytics_logo
+→ const IconData
+
+delve_logo
+→ const IconData
+
+delve_logo_fill
+→ const IconData
+
+delve_logo_inverse
+→ const IconData
+
+density_comfy
+→ const IconData
+
+density_default
+→ const IconData
+
+dependency_add
+→ const IconData
+
+dependency_remove
+→ const IconData
+
+deploy
+→ const IconData
+
+descending
+→ const IconData
+
+design
+→ const IconData
+
+desktop_flow
+→ const IconData
+
+desktop_screenshot
+→ const IconData
+
+developer_tools
+→ const IconData
+
+device_bug
+→ const IconData
+
+device_off
+→ const IconData
+
+device_run
+→ const IconData
+
+devices2
+→ const IconData
+
+devices3
+→ const IconData
+
+devices4
+→ const IconData
+
+diagnostic
+→ const IconData
+
+diagnostic_data_bar_tooltip
+→ const IconData
+
+diagnostic_data_viewer_app
+→ const IconData
+
+dialpad
+→ const IconData
+
+diamond
+→ const IconData
+
+diamond_solid
+→ const IconData
+
+diamond_user
+→ const IconData
+
+dictionary
+→ const IconData
+
+dictionary_remove
+→ const IconData
+
+diet_plan_notebook
+→ const IconData
+
+diff_inline
+→ const IconData
+
+diff_side_by_side
+→ const IconData
+
+diploma
+→ const IconData
+
+disable_updates
+→ const IconData
+
+disconnect_virtual_machine
+→ const IconData
+
+dislike
+→ const IconData
+
+dislike_solid
+→ const IconData
+
+distribute_down
+→ const IconData
+
+doc_library
+→ const IconData
+
+dock_left
+→ const IconData
+
+dock_left_mirrored
+→ const IconData
+
+dock_right
+→ const IconData
+
+docs_logo_inverse
+→ const IconData
+
+document
+→ const IconData
+
+document_approval
+→ const IconData
+
+document_management
+→ const IconData
+
+document_reply
+→ const IconData
+
+document_search
+→ const IconData
+
+document_set
+→ const IconData
+
+documentation
+→ const IconData
+
+dom
+→ const IconData
+
+donut_chart
+→ const IconData
+
+door
+→ const IconData
+
+double_bookmark
+→ const IconData
+
+double_chevron_down
+→ const IconData
+
+double_chevron_down8
+→ const IconData
+
+double_chevron_down12
+→ const IconData
+
+double_chevron_left
+→ const IconData
+
+double_chevron_left8
+→ const IconData
+
+double_chevron_left12
+→ const IconData
+
+double_chevron_left_med
+→ const IconData
+
+double_chevron_left_med_mirrored
+→ const IconData
+
+double_chevron_right
+→ const IconData
+
+double_chevron_right8
+→ const IconData
+
+double_chevron_right12
+→ const IconData
+
+double_chevron_up
+→ const IconData
+
+double_chevron_up8
+→ const IconData
+
+double_chevron_up12
+→ const IconData
+
+double_column
+→ const IconData
+
+double_column_edit
+→ const IconData
+
+double_down_arrow
+→ const IconData
+
+down
+→ const IconData
+
+download
+→ const IconData
+
+download_document
+→ const IconData
+
+drag_object
+→ const IconData
+
+drill_down
+→ const IconData
+
+drill_down_solid
+→ const IconData
+
+drill_expand
+→ const IconData
+
+drill_show
+→ const IconData
+
+drill_through
+→ const IconData
+
+driver_off
+→ const IconData
+
+drm
+→ const IconData
+
+drop
+→ const IconData
+
+drop_shape
+→ const IconData
+
+drop_shape_solid
+→ const IconData
+
+dropdown
+→ const IconData
+
+duplicate_row
+→ const IconData
+
+duststorm
+→ const IconData
+
+dynamic_list
+→ const IconData
+
+dynamic_s_m_b_logo
+→ const IconData
+
+dynamics365_logo
+→ const IconData
+
+e_discovery
+→ const IconData
+
+ease_of_access
+→ const IconData
+
+eat_drink
+→ const IconData
+
+edge_logo
+→ const IconData
+
+edge_logo16
+→ const IconData
+
+edge_old_logo
+→ const IconData
+
+edit
+→ const IconData
+
+edit_contact
+→ const IconData
+
+edit_create
+→ const IconData
+
+edit_event
+→ const IconData
+
+edit_list_pencil
+→ const IconData
+
+edit_mail
+→ const IconData
+
+edit_mirrored
+→ const IconData
+
+edit_note
+→ const IconData
+
+edit_photo
+→ const IconData
+
+edit_solid12
+→ const IconData
+
+edit_solid_mirrored12
+→ const IconData
+
+edit_style
+→ const IconData
+
+edit_table
+→ const IconData
+
+education
+→ const IconData
+
+ellipse
+→ const IconData
+
+embed
+→ const IconData
+
+emi
+→ const IconData
+
+emoji
+→ const IconData
+
+emoji2
+→ const IconData
+
+emoji_disappointed
+→ const IconData
+
+emoji_neutral
+→ const IconData
+
+emoji_tab_symbols
+→ const IconData
+
+employee_self_service
+→ const IconData
+
+empty_recycle_bin
+→ const IconData
+
+encounter
+→ const IconData
+
+encryption
+→ const IconData
+
+end_point_solid
+→ const IconData
+
+engineering_group
+→ const IconData
+
+entitlement_policy
+→ const IconData
+
+entitlement_redemption
+→ const IconData
+
+entity_extraction
+→ const IconData
+
+entry_decline
+→ const IconData
+
+entry_view
+→ const IconData
+
+equalizer
+→ const IconData
+
+erase_tool
+→ const IconData
+
+error
+→ const IconData
+
+error_badge
+→ const IconData
+
+error_badge12
+→ const IconData
+
+event
+→ const IconData
+
+event12
+→ const IconData
+
+event_accepted
+→ const IconData
+
+event_date
+→ const IconData
+
+event_date_missed12
+→ const IconData
+
+event_declined
+→ const IconData
+
+event_info
+→ const IconData
+
+event_tentative
+→ const IconData
+
+event_tentative_mirrored
+→ const IconData
+
+event_to_do_logo
+→ const IconData
+
+excel_document
+→ const IconData
+
+excel_logo
+→ const IconData
+
+excel_logo16
+→ const IconData
+
+excel_logo_inverse
+→ const IconData
+
+excel_logo_inverse16
+→ const IconData
+
+exchange_logo
+→ const IconData
+
+exchange_logo_inverse
+→ const IconData
+
+exercise_tracker
+→ const IconData
+
+expand_all
+→ const IconData
+
+expand_menu
+→ const IconData
+
+explore_content
+→ const IconData
+
+explore_content_single
+→ const IconData
+
+explore_data
+→ const IconData
+
+export
+→ const IconData
+
+export_mirrored
+→ const IconData
+
+express_route_circuits
+→ const IconData
+
+external_build
+→ const IconData
+
+external_t_f_v_c
+→ const IconData
+
+external_user
+→ const IconData
+
+external_x_a_m_l
+→ const IconData
+
+eye_shadow
+→ const IconData
+
+eyedropper
+→ const IconData
+
+f12_dev_tools
+→ const IconData
+
+f_sharp
+→ const IconData
+
+f_sharp_language
+→ const IconData
+
+fabric_asset_library
+→ const IconData
+
+fabric_channel_folder
+→ const IconData
+
+fabric_data_connection_library
+→ const IconData
+
+fabric_doc_library
+→ const IconData
+
+fabric_folder
+→ const IconData
+
+fabric_folder_confirm
+→ const IconData
+
+fabric_folder_fill
+→ const IconData
+
+fabric_folder_link
+→ const IconData
+
+fabric_folder_search
+→ const IconData
+
+fabric_folder_upload
+→ const IconData
+
+fabric_form_library
+→ const IconData
+
+fabric_form_library_mirrored
+→ const IconData
+
+fabric_moveto_folder
+→ const IconData
+
+fabric_network_folder
+→ const IconData
+
+fabric_new_folder
+→ const IconData
+
+fabric_open_folder_horizontal
+→ const IconData
+
+fabric_picture_library
+→ const IconData
+
+fabric_public_folder
+→ const IconData
+
+fabric_report_library
+→ const IconData
+
+fabric_report_library_mirrored
+→ const IconData
+
+fabric_sync_folder
+→ const IconData
+
+fabric_text_highlight
+→ const IconData
+
+fabric_text_highlight_composite
+→ const IconData
+
+fabric_unsync_folder
+→ const IconData
+
+fabric_user_folder
+→ const IconData
+
+factory
+→ const IconData
+
+family
+→ const IconData
+
+fang_body
+→ const IconData
+
+fast_forward
+→ const IconData
+
+fast_forward_eight_x
+→ const IconData
+
+fast_forward_four_x
+→ const IconData
+
+fast_forward_one_five_x
+→ const IconData
+
+fast_forward_one_x
+→ const IconData
+
+fast_forward_point_five_x
+→ const IconData
+
+fast_forward_two_x
+→ const IconData
+
+fast_mode
+→ const IconData
+
+favicon
+→ const IconData
+
+favorite_block
+→ const IconData
+
+favorite_list
+→ const IconData
+
+favorite_star
+→ const IconData
+
+favorite_star_fill
+→ const IconData
+
+fax
+→ const IconData
+
+feedback
+→ const IconData
+
+feedback_request_mirrored_solid
+→ const IconData
+
+feedback_request_solid
+→ const IconData
+
+feedback_response_solid
+→ const IconData
+
+ferry
+→ const IconData
+
+ferry_solid
+→ const IconData
+
+field_changed
+→ const IconData
+
+field_empty
+→ const IconData
+
+field_filled
+→ const IconData
+
+field_not_changed
+→ const IconData
+
+field_read_only
+→ const IconData
+
+field_required
+→ const IconData
+
+file_a_s_p_x
+→ const IconData
+
+file_bug
+→ const IconData
+
+file_c_s_s
+→ const IconData
+
+file_code
+→ const IconData
+
+file_comment
+→ const IconData
+
+file_h_t_m_l
+→ const IconData
+
+file_image
+→ const IconData
+
+file_j_a_v_a
+→ const IconData
+
+file_less
+→ const IconData
+
+file_off
+→ const IconData
+
+file_p_d_b
+→ const IconData
+
+file_request
+→ const IconData
+
+file_s_q_l
+→ const IconData
+
+file_sass
+→ const IconData
+
+file_symlink
+→ const IconData
+
+file_system
+→ const IconData
+
+file_template
+→ const IconData
+
+file_type_solution
+→ const IconData
+
+file_y_m_l
+→ const IconData
+
+filter
+→ const IconData
+
+filter_ascending
+→ const IconData
+
+filter_descending
+→ const IconData
+
+filter_settings
+→ const IconData
+
+filter_solid
+→ const IconData
+
+filters
+→ const IconData
+
+filters_solid
+→ const IconData
+
+financial
+→ const IconData
+
+financial_mirrored_solid
+→ const IconData
+
+financial_solid
+→ const IconData
+
+fingerprint
+→ const IconData
+
+fit_page
+→ const IconData
+
+fit_width
+→ const IconData
+
+five_tile_grid
+→ const IconData
+
+fixed_asset_management
+→ const IconData
+
+fixed_column_width
+→ const IconData
+
+flag
+→ const IconData
+
+flame_solid
+→ const IconData
+
+flash_auto
+→ const IconData
+
+flash_off
+→ const IconData
+
+flashlight
+→ const IconData
+
+flick_down
+→ const IconData
+
+flick_left
+→ const IconData
+
+flick_right
+→ const IconData
+
+flick_up
+→ const IconData
+
+flow
+→ const IconData
+
+flow_chart
+→ const IconData
+
+flow_template
+→ const IconData
+
+flow_trigger
+→ const IconData
+
+flower
+→ const IconData
+
+fluid_logo
+→ const IconData
+
+focal_point
+→ const IconData
+
+focus
+→ const IconData
+
+focus_view
+→ const IconData
+
+fog
+→ const IconData
+
+folder
+→ const IconData
+
+folder_fill
+→ const IconData
+
+folder_horizontal
+→ const IconData
+
+folder_list
+→ const IconData
+
+folder_list_mirrored
+→ const IconData
+
+folder_open
+→ const IconData
+
+folder_query
+→ const IconData
+
+folder_search
+→ const IconData
+
+follow_user
+→ const IconData
+
+font
+→ const IconData
+
+font_color
+→ const IconData
+
+font_color_a
+→ const IconData
+
+font_color_korean
+→ const IconData
+
+font_color_swatch
+→ const IconData
+
+font_decrease
+→ const IconData
+
+font_increase
+→ const IconData
+
+font_size
+→ const IconData
+
+font_size2
+→ const IconData
+
+font_style_korean
+→ const IconData
+
+footer
+→ const IconData
+
+form_library
+→ const IconData
+
+form_library_mirrored
+→ const IconData
+
+form_processing
+→ const IconData
+
+format_painter
+→ const IconData
+
+forum
+→ const IconData
+
+forward
+→ const IconData
+
+forward_event
+→ const IconData
+
+freezing
+→ const IconData
+
+freezing_rain
+→ const IconData
+
+frigid
+→ const IconData
+
+front_camera
+→ const IconData
+
+full_circle_mask
+→ const IconData
+
+full_history
+→ const IconData
+
+full_screen
+→ const IconData
+
+full_view
+→ const IconData
+
+full_width
+→ const IconData
+
+full_width_edit
+→ const IconData
+
+functional_manager_dashboard
+→ const IconData
+
+funnel_chart
+→ const IconData
+
+gallatin_logo
+→ const IconData
+
+game
+→ const IconData
+
+gather
+→ const IconData
+
+generate
+→ const IconData
+
+generic_sc
+
+[… truncated 41323 chars …]

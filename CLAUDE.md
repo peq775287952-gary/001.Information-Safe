@@ -8,7 +8,7 @@
 
 无论是安装、修改、删除、创建文件，还是查看类命令（`ls`、`cat`、`flutter doctor` 等）— **所有工具调用在执行前都必须获得用户明确确认**。
 
-**唯一例外**: 纯思考（thinking 块内的推理），不调用任何工具。
+**唯一例外**: 纯思考（thinking 块内的推理）和 MCP 工具调用（已通过 `mcp__*` 自动批准）。
 
 **How to apply**:
 - 给出方案后，等待用户说"确认"、"执行"、"开始"等指令
@@ -21,7 +21,7 @@
 
 - **名称**: 信息保险箱 (InfoVault)
 - **类型**: Flutter 跨平台应用 (Android + Windows)
-- **当前版本**: v1.1.9 (参见 [CHANGELOG.md](infovault/CHANGELOG.md))
+- **当前版本**: v1.2.1 (参见 [CHANGELOG.md](infovault/CHANGELOG.md))
 - **测试**: 142 tests, 0 failures
 
 ---

@@ -234,7 +234,7 @@ class _AddEditItemScreenState extends State<AddEditItemScreen> {
     } catch (e) {
       if (mounted) {
         messenger.showSnackBar(
-          SnackBar(content: Text('添加照片失败: $e')),
+          const SnackBar(content: Text('添加照片失败，请重试')),
         );
       }
     }

@@ -1,15 +1,8 @@
 # Phase 2: Windows 桌面版 实现计划
 
-> **状态注记 (2026-05-28)**:
-> - Windows 基础功能已完成 (v1.1.4+)，sqflite FFI + 构建脚本已就绪
-> - **生物识别功能已移除** (v1.1.4) — Task 4/5/6/7/8 中的 BiometricService 相关代码不再适用
-> - 当前版本: v1.1.9+18，142 tests 通过
-> - 有效任务: Task 1-3 (依赖+FFI), Task 9 (平台UI), Task 10 (构建脚本)
-> - Task 4-8 (生物识别) 已废弃，Task 11-14 (测试+构建) 部分完成
-
 > **For agentic workers:** 按 Task 顺序执行，每步完成后检查 checkbox。
 
-**Goal:** 将信息保险箱从 Android-only 扩展为 Android + Windows 双平台应用
+**Goal:** 将信息保险箱从 Android-only 扩展为 Android + Windows 双平台应用，支持 Windows Hello 生物识别解锁
 
 **Architecture:** 
 - sqflite 通过 `sqflite_common_ffi` 在 Windows 上工作（sqlite3.dll 需随应用分发）

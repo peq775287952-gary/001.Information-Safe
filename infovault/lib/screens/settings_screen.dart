@@ -137,7 +137,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     } catch (e) {
       if (mounted) {
         messenger.showSnackBar(
-          SnackBar(content: Text('导出失败: $e'), backgroundColor: Colors.red),
+          const SnackBar(content: Text('导出失败，请重试'), backgroundColor: Colors.red),
         );
       }
     }
@@ -205,7 +205,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ListTile(
             leading: const Icon(Icons.history),
             title: const Text('剪贴板自动清空'),
-            subtitle: const Text('复制后60秒自动清空'),
+            subtitle: const Text('复制后30秒自动清空'),
             trailing: Switch(value: _clipboardEnabled, onChanged: _setClipboard),
           ),
           ListTile(

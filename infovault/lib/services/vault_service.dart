@@ -71,6 +71,7 @@ class VaultService extends ChangeNotifier {
       withdrawalPassword: _encrypt(item.withdrawalPassword),
       idNumber: _encrypt(item.idNumber),
       noteContent: _encrypt(item.noteContent),
+      apiKey: _encrypt(item.apiKey),
     );
   }
 
@@ -83,10 +84,22 @@ class VaultService extends ChangeNotifier {
       withdrawalPassword: _decrypt(item.withdrawalPassword),
       idNumber: _decrypt(item.idNumber),
       noteContent: _decrypt(item.noteContent),
+      apiKey: _decrypt(item.apiKey),
     );
   }
 
   // ── CRUD ────────────────────────────────────────────────────────
+
+  bool _matchesSearch(VaultItem item, String query) {
+    return item.title.toLowerCase().contains(query) ||
+        (item.username?.toLowerCase().contains(query) ?? false) ||
+        (item.email?.toLowerCase().contains(query) ?? false) ||
+        (item.phone?.contains(query) ?? false) ||
+        (item.notes?.toLowerCase().contains(query) ?? false) ||
+        (item.url?.toLowerCase().contains(query) ?? false) ||
+        (item.bankName?.toLowerCase().contains(query) ?? false) ||
+        (item.idName?.toLowerCase().contains(query) ?? false);
+  }
 
   List<VaultItem> get _filteredItems {
     var result = _items;
@@ -101,16 +114,7 @@ class VaultService extends ChangeNotifier {
 
     if (_searchQuery.isNotEmpty) {
       final q = _searchQuery.toLowerCase();
-      result = result.where((i) =>
-        i.title.toLowerCase().contains(q) ||
-        (i.username?.toLowerCase().contains(q) ?? false) ||
-        (i.email?.toLowerCase().contains(q) ?? false) ||
-        (i.phone?.contains(q) ?? false) ||
-        (i.notes?.toLowerCase().contains(q) ?? false) ||
-        (i.url?.toLowerCase().contains(q) ?? false) ||
-        (i.bankName?.toLowerCase().contains(q) ?? false) ||
-        (i.idName?.toLowerCase().contains(q) ?? false)
-      ).toList();
+      result = result.where((i) => _matchesSearch(i, q)).toList();
     }
 
     return result;
@@ -187,17 +191,7 @@ class VaultService extends ChangeNotifier {
 
   List<VaultItem> searchDetailed(String query) {
     final q = query.toLowerCase();
-    return _items
-        .where((i) =>
-            i.title.toLowerCase().contains(q) ||
-            (i.username?.toLowerCase().contains(q) ?? false) ||
-            (i.email?.toLowerCase().contains(q) ?? false) ||
-            (i.phone?.contains(q) ?? false) ||
-            (i.notes?.toLowerCase().contains(q) ?? false) ||
-            (i.url?.toLowerCase().contains(q) ?? false) ||
-            (i.bankName?.toLowerCase().contains(q) ?? false) ||
-            (i.idName?.toLowerCase().contains(q) ?? false))
-        .toList();
+    return _items.where((i) => _matchesSearch(i, q)).toList();
   }
 
   /// Re-encrypts all vault items from [oldKey] to [newKey] and reloads data.

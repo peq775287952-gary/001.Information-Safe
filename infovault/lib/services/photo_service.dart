@@ -53,7 +53,9 @@ class PhotoService {
     try {
       final file = File(path);
       if (await file.exists()) await file.delete();
-    } catch (_) {}
+    } catch (e) {
+      debugPrint('Failed to delete photo file: $e');
+    }
   }
 
   Future<Directory> _photoDir() async {

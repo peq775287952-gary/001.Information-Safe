@@ -1,4 +1,5 @@
 import 'dart:io' show Platform;
+import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:path/path.dart' as p;
 import '../models/vault_item.dart';
@@ -20,7 +21,8 @@ class DatabaseService {
 
   Future<Database> _initDatabase() async {
     if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-      final dbPath = await getDatabasesPath();
+      // Use databaseFactoryFfi directly to avoid global databaseFactory dependency
+      final dbPath = await databaseFactoryFfi.getDatabasesPath();
       final path = p.join(dbPath, _dbName);
       return await databaseFactoryFfi.openDatabase(
         path,
@@ -129,14 +131,15 @@ class DatabaseService {
 
   Future<List<VaultItem>> searchItems(String query) async {
     final db = await database;
-    final likePattern = '%$query%';
+    final escaped = query.replaceAll('%', r'\%').replaceAll('_', r'\_');
+    final likePattern = '%$escaped%';
     final maps = await db.query(
       'vault_items',
       where: '''
-        title LIKE ? OR username LIKE ? OR email LIKE ? OR phone LIKE ?
-        OR notes LIKE ?
-        OR url LIKE ? OR bank_name LIKE ? OR id_name LIKE ?
-        OR api_key LIKE ? OR base_url LIKE ? OR model_name LIKE ?
+        title LIKE ? ESCAPE '\\' OR username LIKE ? ESCAPE '\\' OR email LIKE ? ESCAPE '\\' OR phone LIKE ? ESCAPE '\\'
+        OR notes LIKE ? ESCAPE '\\'
+        OR url LIKE ? ESCAPE '\\' OR bank_name LIKE ? ESCAPE '\\' OR id_name LIKE ? ESCAPE '\\'
+        OR api_key LIKE ? ESCAPE '\\' OR base_url LIKE ? ESCAPE '\\' OR model_name LIKE ? ESCAPE '\\'
       ''',
       whereArgs: List.filled(11, likePattern),
       orderBy: 'updated_at DESC',

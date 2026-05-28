@@ -4,7 +4,10 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   file_selector_windows
+  flutter_acrylic
   flutter_secure_storage_windows
+  sqlite3_flutter_libs
+  system_theme
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

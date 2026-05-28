@@ -26,7 +26,7 @@ class FieldRow extends StatelessWidget {
     if (value == null || value!.isEmpty) return;
     ClipboardService.instance.copy(value!);
     messenger?.showSnackBar(
-      const SnackBar(content: Text('已复制，60秒后自动清空'), duration: Duration(seconds: 2)),
+      const SnackBar(content: Text('已复制，30秒后自动清空'), duration: Duration(seconds: 2)),
     );
   }
 

@@ -1,5 +1,5 @@
 class AppConstants {
-  static const int clipboardClearSeconds = 60;
+  static const int clipboardClearSeconds = 30;
   static const int autoLockMinutes = 3;
   static const int pbkdf2Iterations = 10000;
   static const int legacyPbkdf2Iterations = 100000;

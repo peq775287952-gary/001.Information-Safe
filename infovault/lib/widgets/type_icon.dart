@@ -18,7 +18,16 @@ class TypeIcon extends StatelessWidget {
     }
   }
 
-  Color get _bgColor {
+  Color _bgColor(bool isDark) {
+    if (isDark) {
+      switch (type) {
+        case ItemType.password:   return const Color(0xFF1E2A3A);
+        case ItemType.bankCard:   return const Color(0xFF2A2318);
+        case ItemType.idDocument: return const Color(0xFF1A2E23);
+        case ItemType.secureNote: return const Color(0xFF231E2E);
+        case ItemType.apiKey:    return const Color(0xFF211E2E);
+      }
+    }
     switch (type) {
       case ItemType.password:   return AppTheme.surfaceBlue;
       case ItemType.bankCard:   return const Color(0xFFFFF7ED);
@@ -40,11 +49,12 @@ class TypeIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: _bgColor,
+        color: _bgColor(isDark),
         borderRadius: BorderRadius.circular(size / 3),
       ),
       child: Icon(_iconData, size: size * 0.55, color: _iconColor),

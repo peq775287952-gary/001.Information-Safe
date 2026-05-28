@@ -18,8 +18,25 @@
 | flutter_launcher_icons | 应用图标生成 |
 | mock MethodChannel (非 mockito) | flutter_secure_storage 测试 mock |
 | sqflite_common_ffi (非 sqflite) | Windows/Linux/macOS 桌面端 SQLite，通过 FFI 直接调用 |
+| Windows 平台 compute() 跳过 | Flutter compute() Isolate 在 Windows 上卡死，需 Platform.isWindows 判断 |
+| Fluent UI 改造方案 | Windows 端 Material Design 不协调，使用 fluent_ui 包实现 Windows 11 原生风格 |
+| KeyboardListener 替代 Shortcuts | Fluent UI NavigationView 会拦截 Shortcuts 的键盘事件，需用 KeyboardListener 直接监听 |
+| MSIX 打包 | 使用 msix 包，支持 PNG 图标，自签名证书可免费分发 |
+
+## Windows 端技术发现
+| 发现 | 详情 |
+|------|------|
+| compute() Isolate 卡死 | Windows 上 `compute()` 会导致 UI 卡死，需直接运行或用 Isolate.run |
+| databaseFactory 初始化 | Windows sqflite 需要 `databaseFactory = databaseFactoryFfi` |
+| sqlite3.dll 依赖 | Windows sqflite 需要 `sqlite3_flutter_libs` 包提供 native 库 |
+| UIA 控件树不完整 | Flutter Windows 只暴露窗口框架控件，内部 UI 元素不暴露给 UI Automation |
+| pywinauto 限制 | 只能做窗口级操作（最大化、焦点、键盘），无法精确点击 Flutter 内部元素 |
+| pyautogui 坐标点击 | 可以点击 Flutter UI，但窗口大小变化会导致坐标偏移 |
 | PBKDF2 迭代 10,000 次 + compute() Isolate | 本地应用安全够用，解锁 3s→0.3s，UI 不阻塞 |
 | WidgetStateProperty + luminance 检测 | 深色模式下图标/Switch/Chip 自适应 |
+| 深色图标亮度阈值 | 平台图标深色模式需 luminance < 0.5 时变白（0.2 太低，Steam/GitHub 等看不清） |
+| 嵌套 ListView 滑动冲突 | 水平 ListView 嵌套在垂直 ListView 中会滑动冲突，改用 SingleChildScrollView + Row |
+| Theme.of vs FluentTheme.of | fluent_ui 环境下必须用 FluentTheme.of(context)，Theme.of 可能返回错误主题 |
 
 ## 镜像（2026-05-24 验证）
 - ❌ 阿里云 Maven：全部 404 下线
